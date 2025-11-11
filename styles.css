@@ -302,6 +302,7 @@ h1, h2, h3, h4, h5, h6 {
     display: flex;
     align-items: center;
     padding-top: 80px;
+    padding-bottom: 4rem;
     overflow: visible;
     background: linear-gradient(135deg, #f0f7ff 0%, #e0f2fe 50%, #f0f7ff 100%);
 }
@@ -347,7 +348,7 @@ h1, h2, h3, h4, h5, h6 {
     max-width: 800px;
     margin: 0 auto;
     text-align: center;
-    padding: 4rem 0;
+    padding: 4rem 0 6rem 0;
 }
 
 .hero-badge {
@@ -386,6 +387,8 @@ h1, h2, h3, h4, h5, h6 {
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
+    padding-bottom: 0.5rem;
+    margin-bottom: 0.5rem;
 }
 
 .hero-subtitle {
@@ -520,7 +523,7 @@ h1, h2, h3, h4, h5, h6 {
    WHY SECTION
    ============================================ */
 .why-section {
-    padding: 6rem 0;
+    padding: 8rem 0 6rem 0;
     background: white;
 }
 
