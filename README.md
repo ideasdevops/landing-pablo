@@ -1,54 +1,60 @@
-# Seguro de Riesgos Cibernéticos - Del Campo Seguros
+# Seguro Viajero Argentina - Del Campo Seguros
 
 ## Descripción
-Landing page profesional para la comercialización de seguros de riesgos cibernéticos de Del Campo Seguros. La página está diseñada para transmitir seriedad, profesionalismo y confianza en el servicio de seguros especializados.
+Landing page profesional para la comercialización de seguros de viaje a Argentina. La página está diseñada para transmitir confianza, tranquilidad y conocimiento, ofreciendo protección completa para viajeros que desean conocer Argentina.
 
 ## Características Principales
 
 ### 🎨 Diseño y Branding
-- **Paleta de colores corporativa de Del Campo Seguros:**
-  - Azul oscuro (#003366) - Color principal
-  - Azul medio (#004d99) - Gradientes y acentos
-  - Verde (#009900) - Botones de acción y elementos destacados
-  - Blanco (#FFFFFF) - Fondos principales
-  - Gris claro (#F2F2F2) - Fondos secundarios
+- **Paleta de colores profesional:**
+  - Azul primario (#0066cc) - Confianza y seguridad
+  - Verde secundario (#00a86b) - Tranquilidad
+  - Naranja acento (#ff6b35) - Acción y energía
+  - Blanco (#FFFFFF) - Limpieza y claridad
+  - Gris claro (#f8fafc) - Fondos secundarios
 
-- **Logotipo corporativo:** Implementado con tipografía profesional
+- **Logotipo corporativo:** Del Campo Seguros
 - **Diseño responsivo:** Optimizado para dispositivos móviles y desktop
+- **Sistema de traducciones:** Español, Inglés y Portugués
 
 ### 📋 Contenido Especializado
-- **Información detallada sobre seguros de riesgos cibernéticos**
-- **Coberturas específicas:** Violación de datos, malware, ransomware, interrupción de negocio
-- **Servicios adicionales:** Centro de respuesta 24/7, servicios de prevención y recuperación
-- **Beneficios de Del Campo Seguros:** Experiencia, mejores aseguradoras, asesoramiento personalizado
+- **Información detallada sobre seguros de viaje a Argentina**
+- **Coberturas específicas:** Médica internacional, equipaje, cancelación, asistencia 24/7
+- **Beneficios exclusivos:** Activación inmediata, app móvil, póliza digital
+- **Testimonios reales:** Experiencias de viajeros protegidos
 
 ### 🛡️ Secciones Principales
-1. **Hero Section:** Presentación impactante del servicio
-2. **Información sobre Cyber Risk:** Qué es y por qué es importante
-3. **Coberturas Detalladas:** Explicación completa de las protecciones incluidas
-4. **Beneficios:** Ventajas de elegir Del Campo Seguros
-5. **Formulario de Cotización:** Captura de leads especializada
+1. **Hero Section:** Presentación impactante con mensaje de confianza
+2. **Por qué elegirnos:** Ventajas y beneficios del seguro
+3. **Coberturas:** Planes detallados (Médica, Completo, Asistencia)
+4. **Beneficios:** Características exclusivas del servicio
+5. **Testimonios:** Historias de viajeros satisfechos
+6. **Formulario de Cotización:** Captura de leads especializada
+7. **FAQ:** Preguntas frecuentes sobre el seguro
 
 ### 📱 Funcionalidades
-- **Formulario de cotización personalizado** con campos específicos para seguros
+- **Sistema de traducciones:** Español, Inglés y Portugués
+- **Formulario de cotización personalizado** con validación
 - **Navegación suave** entre secciones
-- **Animaciones profesionales** para mejorar la experiencia del usuario
-- **Validación de formularios** en tiempo real
+- **Animaciones profesionales** para mejorar la experiencia
 - **Diseño responsive** para todos los dispositivos
+- **Selector de idioma** en el header
 
 ## Estructura de Archivos
 
 ```
-cyber-risk-mockup/
-├── frontend/
-│   ├── index.html          # Página principal
-│   ├── styles.css          # Estilos con branding de Del Campo
-│   ├── script.js           # Funcionalidades JavaScript
-│   └── config.js           # Configuración
+seguro-viajero/
+├── index.html          # Página principal
+├── styles.css          # Estilos del sitio
+├── script.js           # Funcionalidades JavaScript
+├── translations.js     # Sistema de traducciones
+├── config.js           # Configuración
+├── start-server.js     # Servidor Node.js para desarrollo
 ├── backend/
-│   ├── app.py              # Servidor backend
-│   └── requirements.txt    # Dependencias Python
-└── README.md               # Este archivo
+│   ├── app.py          # Servidor backend Flask
+│   └── requirements.txt # Dependencias Python
+├── assets/             # Recursos adicionales
+└── README.md           # Este archivo
 ```
 
 ## Tecnologías Utilizadas
@@ -56,35 +62,58 @@ cyber-risk-mockup/
 - **CSS3** - Estilos modernos con gradientes y animaciones
 - **JavaScript ES6+** - Interactividad y validaciones
 - **Font Awesome** - Iconografía profesional
-- **Google Fonts (Inter)** - Tipografía moderna
+- **Google Fonts** - Poppins y Playfair Display
+- **Node.js** - Servidor de desarrollo
+- **Python Flask** - Backend para envío de correos
 
 ## Información de Contacto
 - **Empresa:** Del Campo Seguros
 - **Email:** manuelj@delcampobroker.com
-- **Teléfono:** +54 9 2616 97-9044
-- **Dirección:** Piedras 267 - Chacras de Coria - Mendoza, Argentina
-- **Horarios:** Lunes a Viernes de 9 a 17 hs
+- **Broker:** Manuel del Campo - Broker Especializado
+- **Dirección:** Mendoza, Argentina
+- **Horarios:** Atención 24/7
 
 ## Características del Seguro
-- ✅ Protección integral contra ataques cibernéticos
-- ✅ Cobertura financiera completa
-- ✅ Responsabilidad civil incluida
-- ✅ Soporte técnico especializado
-- ✅ Defensa legal y regulatoria
-- ✅ Centro de respuesta 24/7
-- ✅ Servicios de prevención y recuperación
+- ✅ Cobertura médica internacional completa
+- ✅ Asistencia 24/7 en español
+- ✅ Protección de equipaje
+- ✅ Cancelación de viaje
+- ✅ Repatriación médica
+- ✅ Activación inmediata
+- ✅ App móvil incluida
+- ✅ Póliza digital instantánea
 
 ## Instalación y Uso
-1. Clonar o descargar el proyecto
-2. Navegar a la carpeta `frontend`
-3. Abrir `index.html` en un navegador web
-4. Para desarrollo local, usar un servidor web simple
+
+### Desarrollo Local
+
+1. **Iniciar servidor frontend:**
+```bash
+cd seguro-viajero
+npm start
+# o
+node start-server.js
+```
+
+2. **Iniciar servidor backend (opcional):**
+```bash
+cd backend
+python3 -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
+python3 app.py
+```
+
+3. **Acceder al sitio:**
+- Frontend: http://localhost:8008
+- Backend: http://localhost:5000
 
 ## Notas de Desarrollo
 - El diseño está optimizado para conversión de leads
-- Formulario especializado para captura de información empresarial
-- Contenido educativo sobre riesgos cibernéticos
+- Formulario especializado para captura de información de viajeros
+- Sistema de traducciones completo (ES, EN, PT)
 - Branding consistente con la identidad de Del Campo Seguros
+- Arquitectura limpia y mantenible
 
 ---
-*Desarrollado para Del Campo Seguros - Broker especializado en seguros de riesgos cibernéticos*
+*Desarrollado para Del Campo Seguros - Broker especializado en seguros de viaje*

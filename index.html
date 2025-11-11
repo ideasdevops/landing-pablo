@@ -3,26 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Curso: Desarrollo No-Code con IA</title>
+    <title>Seguro Viajero Argentina - Del Campo Seguros | Protección Total para tu Aventura</title>
+    <meta name="description" content="Seguro de viaje especializado para conocer Argentina. Del Campo Seguros te ofrece cobertura médica, equipaje, cancelación y asistencia 24/7. Viaja tranquilo, viaja protegido.">
     <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
     <!-- Header -->
     <header class="header">
         <nav class="nav">
             <div class="nav-brand">
-                <img src="assets/IdeasDevops_largo_negro.png" alt="IdeasDevOps" class="logo-ideasdevops">
-                <span>No-Code IA</span>
+                <img src="https://www.delcamposeguros.com/files/imageedit_1_6276820784.png" alt="Del Campo Seguros" class="logo-delcampo">
+                <span>Del Campo Seguros</span>
             </div>
             <ul class="nav-menu">
-                <li><a href="#inicio">Inicio</a></li>
-                <li><a href="#curso">Curso</a></li>
-                <li><a href="#temario">Temario</a></li>
-                <li><a href="ejemplos.html">Ejemplos</a></li>
-                <li><a href="#inscripcion">Inscripción</a></li>
+                <li><a href="#inicio" data-translate="nav.inicio">Inicio</a></li>
+                <li><a href="#coberturas" data-translate="nav.coberturas">Coberturas</a></li>
+                <li><a href="#beneficios" data-translate="nav.beneficios">Beneficios</a></li>
+                <li><a href="#testimonios" data-translate="nav.testimonios">Testimonios</a></li>
+                <li><a href="#cotizar" class="btn-nav" data-translate="nav.cotizar">Cotizar Ahora</a></li>
             </ul>
+            <div class="language-selector">
+                <button class="lang-btn" id="langBtn">
+                    <i class="fas fa-globe"></i>
+                    <span id="currentLang">ES</span>
+                    <i class="fas fa-chevron-down"></i>
+                </button>
+                <div class="lang-dropdown" id="langDropdown">
+                    <a href="#" class="lang-option" data-lang="es">
+                        <span class="lang-flag">🇪🇸</span>
+                        <span>Español</span>
+                    </a>
+                    <a href="#" class="lang-option" data-lang="en">
+                        <span class="lang-flag">🇺🇸</span>
+                        <span>English</span>
+                    </a>
+                    <a href="#" class="lang-option" data-lang="pt">
+                        <span class="lang-flag">🇧🇷</span>
+                        <span>Português</span>
+                    </a>
+                </div>
+            </div>
             <div class="nav-toggle">
                 <span></span>
                 <span></span>
@@ -33,655 +55,468 @@
 
     <!-- Hero Section -->
     <section id="inicio" class="hero">
-        <div class="hero-content">
-            <div class="hero-text">
-            <h1>Seguro de Riesgos Cibernéticos</h1>
-            <p class="hero-subtitle">Protege tu empresa de ataques digitales con cobertura especializada y respaldo de las mejores aseguradoras del mercado</p>
-                <div class="hero-stats">
-                    <div class="stat">
-                        <i class="fas fa-shield-alt"></i>
-                        <span>Protección Total</span>
+        <div class="hero-background">
+            <div class="hero-overlay"></div>
+            <div class="hero-pattern"></div>
+        </div>
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-badge">
+                    <i class="fas fa-award"></i>
+                    <span data-translate="hero.badge">Más de 50,000 viajeros protegidos</span>
+                </div>
+                <h1 class="hero-title">
+                    <span class="title-line" data-translate="hero.titleLine">Viaja Tranquilo por</span>
+                    <span class="title-highlight">Argentina</span>
+                </h1>
+                <p class="hero-subtitle" data-translate="hero.subtitle">
+                    Protección completa para tu aventura. Cobertura médica internacional, asistencia 24/7 y respaldo de las mejores aseguradoras. Disfruta Argentina con total tranquilidad.
+                </p>
+                <div class="hero-features">
+                    <div class="hero-feature">
+                        <i class="fas fa-check-circle"></i>
+                        <span data-translate="hero.feature1">Cobertura médica internacional</span>
                     </div>
-                    <div class="stat">
-                        <i class="fas fa-lock"></i>
-                        <span>Ciberseguridad</span>
+                    <div class="hero-feature">
+                        <i class="fas fa-check-circle"></i>
+                        <span data-translate="hero.feature2">Asistencia 24/7 en español</span>
                     </div>
-                    <div class="stat">
-                        <i class="fas fa-headset"></i>
-                        <span>Soporte 24/7</span>
+                    <div class="hero-feature">
+                        <i class="fas fa-check-circle"></i>
+                        <span data-translate="hero.feature3">Protección de equipaje</span>
                     </div>
                 </div>
                 <div class="hero-buttons">
-                    <button class="btn btn-primary" onclick="scrollToSection('cotizacion')">
+                    <button class="btn btn-primary" onclick="scrollToSection('cotizar')" data-translate="hero.btnCotizar">
                         <i class="fas fa-calculator"></i>
-                        Solicitar Cotización
+                        Cotizar mi Seguro
                     </button>
-                    <button class="btn btn-secondary" onclick="scrollToSection('cyber-risk')">
+                    <button class="btn btn-secondary" onclick="scrollToSection('coberturas')" data-translate="hero.btnVerCoberturas">
                         <i class="fas fa-info-circle"></i>
-                        Más Información
+                        Ver Coberturas
                     </button>
                 </div>
-            </div>
-            <div class="hero-visual">
-                <div class="floating-cards">
-                    <div class="card card-1">
-                        <i class="fas fa-virus"></i>
-                        <span>Malware</span>
-                    </div>
-                    <div class="card card-2">
-                        <i class="fas fa-user-secret"></i>
-                        <span>Hackers</span>
-                    </div>
-                    <div class="card card-3">
-                        <i class="fas fa-database"></i>
-                        <span>Datos</span>
-                    </div>
-                    <div class="card card-4">
-                        <i class="fas fa-network-wired"></i>
-                        <span>Redes</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Course Overview -->
-    <section id="curso" class="course-overview">
-        <div class="container">
-            <h2>¿Qué Aprenderás?</h2>
-            <div class="overview-grid">
-                <div class="overview-card">
-                    <div class="card-icon">
-                        <i class="fas fa-store"></i>
-                    </div>
-                    <h3>E-commerce Profesional</h3>
-                    <p>Configura tu tienda online con las mejores herramientas del mercado</p>
-                </div>
-                <div class="overview-card">
-                    <div class="card-icon">
-                        <i class="fas fa-globe"></i>
-                    </div>
-                    <h3>Dominio y Hosting</h3>
-                    <p>Elige el mejor dominio y hosting para tu negocio digital</p>
-                </div>
-                <div class="overview-card">
-                    <div class="card-icon">
-                        <i class="fas fa-hashtag"></i>
-                    </div>
-                    <h3>Redes Sociales</h3>
-                    <p>Estrategias efectivas para Facebook, Instagram y LinkedIn</p>
-                </div>
-                <div class="overview-card">
-                    <div class="card-icon">
-                        <i class="fas fa-ad"></i>
-                    </div>
-                    <h3>Publicidad Digital</h3>
-                    <p>Crea campañas exitosas en Meta Ads y Google Ads</p>
-                </div>
-                <div class="overview-card">
-                    <div class="card-icon">
-                        <i class="fas fa-chart-bar"></i>
-                    </div>
-                    <h3>Analytics</h3>
-                    <p>Mide y optimiza el rendimiento de tus campañas</p>
-                </div>
-                <div class="overview-card">
-                    <div class="card-icon">
-                        <i class="fas fa-code"></i>
-                    </div>
-                    <h3>Open Source</h3>
-                    <p>Implementa soluciones open source para tu tienda</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Course Schedule -->
-    <section id="temario" class="course-schedule">
-        <div class="container">
-            <h2>Temario del Curso</h2>
-            <div class="schedule-container">
-                <!-- Clase 1 -->
-                <div class="class-card">
-                    <div class="class-header">
-                        <div class="class-number">1</div>
-                        <div class="class-info">
-                            <h3>Fundamentos de E-commerce y Marketing Digital</h3>
-                            <p class="class-duration">2 horas</p>
+                <div class="hero-trust">
+                    <p class="trust-text" data-translate="hero.trustText">Avalado por las principales aseguradoras internacionales</p>
+                    <div class="trust-badges">
+                        <div class="trust-badge">
+                            <i class="fas fa-shield-check"></i>
+                            <span data-translate="hero.certificado">Certificado</span>
                         </div>
-                    </div>
-                    <div class="class-content">
-                        <div class="topic">
-                            <div class="topic-time">30 min</div>
-                            <div class="topic-content">
-                                <h4><i class="fas fa-shopping-cart"></i> Introducción a las Ventas en Línea y E-commerce</h4>
-                                <ul>
-                                    <li>Definición y ventajas del comercio electrónico</li>
-                                    <li>Ejemplos de tiendas exitosas</li>
-                                    <li>Herramientas: Shopify, WooCommerce, PrestaShop</li>
-                                </ul>
-                            </div>
+                        <div class="trust-badge">
+                            <i class="fas fa-lock"></i>
+                            <span data-translate="hero.seguro">Seguro</span>
                         </div>
-                        <div class="topic">
-                            <div class="topic-time">30 min</div>
-                            <div class="topic-content">
-                                <h4><i class="fas fa-globe"></i> Registro de Dominio y Hosting/VPS</h4>
-                                <ul>
-                                    <li>Importancia de un dominio profesional</li>
-                                    <li>Proceso de registro de dominio</li>
-                                    <li>Hosting compartido vs VPS</li>
-                                    <li>Cómo elegir el mejor hosting</li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="topic">
-                            <div class="topic-time">30 min</div>
-                            <div class="topic-content">
-                                <h4><i class="fas fa-share-alt"></i> Redes Sociales para Negocios</h4>
-                                <ul>
-                                    <li><strong>Plataformas principales:</strong> Facebook, Instagram, LinkedIn, TikTok, Twitter</li>
-                                    <li><strong>Herramientas GRATUITAS de gestión:</strong></li>
-                                    <li>• <strong>Meta Business Suite:</strong> Gestión unificada Facebook/Instagram</li>
-                                    <li>• <strong>LinkedIn Company Page:</strong> Perfil empresarial profesional</li>
-                                    <li>• <strong>Google My Business:</strong> Presencia local en Google</li>
-                                    <li>• <strong>Buffer (plan gratuito):</strong> 3 cuentas, 10 posts</li>
-                                    <li>• <strong>Hootsuite (plan gratuito):</strong> 3 perfiles sociales</li>
-                                    <li><strong>Optimización de perfiles:</strong> Bio, imágenes, horarios, contacto</li>
-                                    <li><strong>Estrategias de engagement:</strong> Contenido de valor, interacción, hashtags</li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="topic">
-                            <div class="topic-time">30 min</div>
-                            <div class="topic-content">
-                                <h4><i class="fas fa-palette"></i> Creación de Contenidos Atractivos</h4>
-                                <ul>
-                                    <li><strong>Tipos de contenido:</strong> Imágenes, videos, infografías, stories, reels</li>
-                                    <li><strong>Herramientas GRATUITAS de diseño:</strong></li>
-                                    <li>• <strong>Canva:</strong> 250,000+ plantillas, editor drag & drop</li>
-                                    <li>• <strong>GIMP:</strong> Editor profesional como Photoshop</li>
-                                    <li>• <strong>Inkscape:</strong> Gráficos vectoriales como Illustrator</li>
-                                    <li>• <strong>DaVinci Resolve:</strong> Editor de video profesional</li>
-                                    <li>• <strong>Pixlr:</strong> Editor online sin registro</li>
-                                    <li>• <strong>Unsplash/Pexels:</strong> Imágenes de stock gratuitas</li>
-                                    <li><strong>Programación y automatización:</strong> Buffer, Hootsuite (planes gratuitos)</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Clase 2 -->
-                <div class="class-card">
-                    <div class="class-header">
-                        <div class="class-number">2</div>
-                        <div class="class-info">
-                            <h3>Publicidad Digital, Analítica y Open Source</h3>
-                            <p class="class-duration">2 horas</p>
-                        </div>
-                    </div>
-                    <div class="class-content">
-                        <div class="topic">
-                            <div class="topic-time">45 min</div>
-                            <div class="topic-content">
-                                <h4><i class="fas fa-ad"></i> Creación de Campañas en Meta Ads</h4>
-                                <ul>
-                                    <li>Configuración de Meta Ads Manager</li>
-                                    <li>Segmentación de audiencia</li>
-                                    <li>Creación de anuncios efectivos</li>
-                                    <li>Análisis de resultados</li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="topic">
-                            <div class="topic-time">45 min</div>
-                            <div class="topic-content">
-                                <h4><i class="fas fa-chart-line"></i> Google Analytics y Google Ads</h4>
-                                <ul>
-                                    <li>Configuración de Google Analytics</li>
-                                    <li>Métricas clave de conversión</li>
-                                    <li>Configuración de Google Ads</li>
-                                    <li>Optimización de anuncios</li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="topic">
-                            <div class="topic-time">20 min</div>
-                            <div class="topic-content">
-                                <h4><i class="fas fa-code"></i> Sistemas Open Source para E-commerce</h4>
-                                <ul>
-                                    <li><strong>PrestaShop:</strong> Más de 300,000 tiendas activas, 100% gratuito</li>
-                                    <li><strong>WooCommerce:</strong> Plugin de WordPress, sin límite de productos</li>
-                                    <li><strong>OpenCart:</strong> Fácil instalación, multi-tienda</li>
-                                    <li><strong>Magento Open Source:</strong> Para tiendas grandes y complejas</li>
-                                    <li><strong>osCommerce:</strong> Una de las primeras plataformas open source</li>
-                                    <li>Ventajas: Control total, personalización ilimitada, sin costos de licencia</li>
-                                    <li>Desventajas: Requiere conocimientos técnicos, mantenimiento propio</li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="topic">
-                            <div class="topic-time">10 min</div>
-                            <div class="topic-content">
-                                <h4><i class="fas fa-server"></i> Instalación en Hosting/VPS</h4>
-                                <ul>
-                                    <li>Proceso de instalación</li>
-                                    <li>Consideraciones de seguridad</li>
-                                    <li>Mantenimiento básico</li>
-                                </ul>
-                            </div>
+                        <div class="trust-badge">
+                            <i class="fas fa-headset"></i>
+                            <span data-translate="hero.soporte">Soporte 24/7</span>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+        <div class="hero-shape"></div>
     </section>
 
-    <!-- Tools Section -->
-    <section class="tools-section">
+    <!-- Why Choose Us Section -->
+    <section class="why-section">
         <div class="container">
-            <h2>Herramientas No-Code que Dominarás</h2>
-            <p class="section-subtitle">Aprende a usar las mejores herramientas de desarrollo no-code con asistencia de IA</p>
-            
-            <!-- No-Code Platforms -->
-            <div class="tools-category">
-                <h3><i class="fas fa-cube"></i> Plataformas No-Code Principales</h3>
-                <div class="tools-grid">
-                    <div class="tool-card">
-                        <div class="tool-logo">
-                            <i class="fas fa-cube"></i>
-                        </div>
-                        <h3>Webflow</h3>
-                        <p><strong>PLAN GRATUITO</strong> - Creador de sitios web visual sin código</p>
-                        <div class="tool-features">
-                            <span class="feature-tag">Diseño visual</span>
-                            <span class="feature-tag">CMS integrado</span>
-                            <span class="feature-tag">Hosting incluido</span>
-                        </div>
+            <div class="section-header">
+                <span class="section-tag" data-translate="sections.whyTag">¿Por qué elegirnos?</span>
+                <h2 class="section-title" data-translate="sections.whyTitle">Tu Tranquilidad es Nuestra Prioridad</h2>
+                <p class="section-subtitle" data-translate="sections.whySubtitle">
+                    Más de 15 años protegiendo viajeros en Argentina. Conocemos cada rincón del país y sabemos cómo cuidarte.
+                </p>
+            </div>
+            <div class="why-grid">
+                <div class="why-card">
+                    <div class="why-icon">
+                        <i class="fas fa-user-md"></i>
                     </div>
-                    <div class="tool-card">
-                        <div class="tool-logo">
-                            <i class="fas fa-bolt"></i>
-                        </div>
-                        <h3>Bubble</h3>
-                        <p><strong>PLAN GRATUITO</strong> - Plataforma para crear aplicaciones web complejas</p>
-                        <div class="tool-features">
-                            <span class="feature-tag">Apps nativas</span>
-                            <span class="feature-tag">Base de datos</span>
-                            <span class="feature-tag">API integrada</span>
-                        </div>
+                    <h3>Cobertura Médica Completa</h3>
+                    <p>Protección médica en toda Argentina con red de hospitales y clínicas de primer nivel. Sin copagos ni deducibles complicados.</p>
+                </div>
+                <div class="why-card">
+                    <div class="why-icon">
+                        <i class="fas fa-phone-alt"></i>
                     </div>
-                    <div class="tool-card">
-                        <div class="tool-logo">
-                            <i class="fas fa-mobile-alt"></i>
-                        </div>
-                        <h3>Glide</h3>
-                        <p><strong>PLAN GRATUITO</strong> - Creador de apps móviles desde Google Sheets</p>
-                        <div class="tool-features">
-                            <span class="feature-tag">Apps móviles</span>
-                            <span class="feature-tag">Google Sheets</span>
-                            <span class="feature-tag">Tiempo real</span>
-                        </div>
+                    <h3>Asistencia 24/7 en Español</h3>
+                    <p>Línea de emergencia disponible las 24 horas, los 7 días de la semana. Hablamos tu idioma y entendemos tus necesidades.</p>
+                </div>
+                <div class="why-card">
+                    <div class="why-icon">
+                        <i class="fas fa-suitcase"></i>
                     </div>
+                    <h3>Protección de Equipaje</h3>
+                    <p>Cobertura completa para pérdida, robo o daño de equipaje. Reembolso rápido y sin complicaciones.</p>
+                </div>
+                <div class="why-card">
+                    <div class="why-icon">
+                        <i class="fas fa-plane"></i>
+                    </div>
+                    <h3>Cancelación de Viaje</h3>
+                    <p>Protección ante cancelaciones por emergencias médicas, condiciones climáticas o situaciones imprevistas.</p>
+                </div>
+                <div class="why-card">
+                    <div class="why-icon">
+                        <i class="fas fa-file-invoice-dollar"></i>
+                    </div>
+                    <h3>Sin Complicaciones</h3>
+                    <p>Proceso de reembolso simple y rápido. Documentación mínima y atención personalizada en cada caso.</p>
+                </div>
+                <div class="why-card">
+                    <div class="why-icon">
+                        <i class="fas fa-map-marked-alt"></i>
+                    </div>
+                    <h3>Conocimiento Local</h3>
+                    <p>Equipo con experiencia en Argentina. Te ayudamos a encontrar los mejores servicios médicos y asistencia donde estés.</p>
                 </div>
             </div>
+        </div>
+    </section>
 
-            <!-- Automation Tools -->
-            <div class="tools-category">
-                <h3><i class="fas fa-robot"></i> Herramientas de Automatización</h3>
-                <div class="tools-grid">
-                    <div class="tool-card">
-                        <div class="tool-logo">
-                            <i class="fas fa-cogs"></i>
-                        </div>
-                        <h3>Zapier</h3>
-                        <p><strong>PLAN GRATUITO</strong> - Conecta más de 3,000 aplicaciones sin código</p>
-                        <div class="tool-features">
-                            <span class="feature-tag">100 zaps gratuitos</span>
-                            <span class="feature-tag">Templates predefinidos</span>
-                            <span class="feature-tag">Multi-step workflows</span>
-                        </div>
-                    </div>
-                    <div class="tool-card">
-                        <div class="tool-logo">
-                            <i class="fas fa-sync"></i>
-                        </div>
-                        <h3>Make (Integromat)</h3>
-                        <p><strong>PLAN GRATUITO</strong> - Automatización visual avanzada con IA</p>
-                        <div class="tool-features">
-                            <span class="feature-tag">1000 operaciones/mes</span>
-                            <span class="feature-tag">Scenarios complejos</span>
-                            <span class="feature-tag">IA integrada</span>
-                        </div>
-                    </div>
-                    <div class="tool-card">
-                        <div class="tool-logo">
-                            <i class="fas fa-comments"></i>
-                        </div>
-                        <h3>Typebot</h3>
-                        <p><strong>100% GRATUITO</strong> - Creador de chatbots conversacionales</p>
-                        <div class="tool-features">
-                            <span class="feature-tag">Open source</span>
-                            <span class="feature-tag">Templates de IA</span>
-                            <span class="feature-tag">Integración fácil</span>
-                        </div>
-                    </div>
-                    <div class="tool-card">
-                        <div class="tool-logo">
-                            <i class="fas fa-envelope"></i>
-                        </div>
-                        <h3>n8n</h3>
-                        <p><strong>100% GRATUITO</strong> - Plataforma de automatización open source</p>
-                        <div class="tool-features">
-                            <span class="feature-tag">Self-hosted</span>
-                            <span class="feature-tag">Node-based</span>
-                            <span class="feature-tag">API extensible</span>
-                        </div>
-                    </div>
-                </div>
+    <!-- Coverage Section -->
+    <section id="coberturas" class="coverage-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag" data-translate="sections.coverageTag">Coberturas</span>
+                <h2 class="section-title" data-translate="sections.coverageTitle">Protección Integral para tu Viaje</h2>
+                <p class="section-subtitle" data-translate="sections.coverageSubtitle">
+                    Planes diseñados para cubrir todas tus necesidades durante tu estadía en Argentina
+                </p>
             </div>
-
-            <!-- AI Development Tools -->
-            <div class="tools-category">
-                <h3><i class="fas fa-brain"></i> Herramientas de IA para Desarrollo</h3>
-                <div class="tools-grid">
-                    <div class="tool-card">
-                        <div class="tool-logo">
-                            <i class="fas fa-code"></i>
-                        </div>
-                        <h3>Cursor</h3>
-                        <p><strong>PLAN GRATUITO</strong> - Editor de código con IA integrada para desarrollo</p>
-                        <div class="tool-features">
-                            <span class="feature-tag">IA para código</span>
-                            <span class="feature-tag">Autocompletado</span>
-                            <span class="feature-tag">Chat con IA</span>
-                        </div>
+            <div class="coverage-grid">
+                <div class="coverage-card">
+                    <div class="coverage-header">
+                        <i class="fas fa-heartbeat"></i>
+                        <h3>Médica y Hospitalaria</h3>
                     </div>
-                    <div class="tool-card">
-                        <div class="tool-logo">
-                            <i class="fas fa-robot"></i>
-                        </div>
-                        <h3>GitHub Copilot</h3>
-                        <p><strong>PLAN GRATUITO</strong> - Asistente de IA para programación</p>
-                        <div class="tool-features">
-                            <span class="feature-tag">Código automático</span>
-                            <span class="feature-tag">Múltiples lenguajes</span>
-                            <span class="feature-tag">Integración IDE</span>
-                        </div>
-                    </div>
-                    <div class="tool-card">
-                        <div class="tool-logo">
-                            <i class="fas fa-magic"></i>
-                        </div>
-                        <h3>ChatGPT</h3>
-                        <p><strong>PLAN GRATUITO</strong> - Asistente de IA para desarrollo y debugging</p>
-                        <div class="tool-features">
-                            <span class="feature-tag">Generación de código</span>
-                            <span class="feature-tag">Debugging</span>
-                            <span class="feature-tag">Documentación</span>
-                        </div>
-                    </div>
-                    <div class="tool-card">
-                        <div class="tool-logo">
-                            <i class="fas fa-terminal"></i>
-                        </div>
-                        <h3>Claude</h3>
-                        <p><strong>PLAN GRATUITO</strong> - IA avanzada para desarrollo y análisis de código</p>
-                        <div class="tool-features">
-                            <span class="feature-tag">Análisis de código</span>
-                            <span class="feature-tag">Refactoring</span>
-                            <span class="feature-tag">Optimización</span>
-                        </div>
-                    </div>
+                    <ul class="coverage-list">
+                        <li><i class="fas fa-check"></i> Consultas médicas ilimitadas</li>
+                        <li><i class="fas fa-check"></i> Hospitalización y cirugías</li>
+                        <li><i class="fas fa-check"></i> Medicamentos y farmacia</li>
+                        <li><i class="fas fa-check"></i> Emergencias médicas</li>
+                        <li><i class="fas fa-check"></i> Repatriación médica</li>
+                        <li><i class="fas fa-check"></i> Odontología de emergencia</li>
+                    </ul>
                 </div>
-            </div>
-
-            <!-- Deployment Tools -->
-            <div class="tools-category">
-                <h3><i class="fas fa-server"></i> Herramientas de Deploy y VPS</h3>
-                <div class="tools-grid">
-                    <div class="tool-card">
-                        <div class="tool-logo">
-                            <i class="fab fa-docker"></i>
-                        </div>
-                        <h3>Docker</h3>
-                        <p><strong>100% GRATUITO</strong> - Containerización para deploy profesional</p>
-                        <div class="tool-features">
-                            <span class="feature-tag">Containers</span>
-                            <span class="feature-tag">Multi-plataforma</span>
-                            <span class="feature-tag">Escalabilidad</span>
-                        </div>
+                <div class="coverage-card featured">
+                    <div class="coverage-badge">Más Popular</div>
+                    <div class="coverage-header">
+                        <i class="fas fa-shield-alt"></i>
+                        <h3>Plan Completo</h3>
                     </div>
-                    <div class="tool-card">
-                        <div class="tool-logo">
-                            <i class="fab fa-ubuntu"></i>
-                        </div>
-                        <h3>Ubuntu Server</h3>
-                        <p><strong>100% GRATUITO</strong> - Sistema operativo para VPS</p>
-                        <div class="tool-features">
-                            <span class="feature-tag">LTS Support</span>
-                            <span class="feature-tag">Seguridad</span>
-                            <span class="feature-tag">Performance</span>
-                        </div>
+                    <ul class="coverage-list">
+                        <li><i class="fas fa-check"></i> Todo lo del plan médico</li>
+                        <li><i class="fas fa-check"></i> Equipaje hasta $5,000 USD</li>
+                        <li><i class="fas fa-check"></i> Cancelación de viaje</li>
+                        <li><i class="fas fa-check"></i> Retraso de vuelo</li>
+                        <li><i class="fas fa-check"></i> Muerte accidental</li>
+                        <li><i class="fas fa-check"></i> Responsabilidad civil</li>
+                    </ul>
+                </div>
+                <div class="coverage-card">
+                    <div class="coverage-header">
+                        <i class="fas fa-globe-americas"></i>
+                        <h3>Asistencia en Viaje</h3>
                     </div>
-                    <div class="tool-card">
-                        <div class="tool-logo">
-                            <i class="fas fa-cloud"></i>
-                        </div>
-                        <h3>EasyPanel</h3>
-                        <p><strong>PLAN GRATUITO</strong> - Panel de control para VPS con Docker</p>
-                        <div class="tool-features">
-                            <span class="feature-tag">Deploy visual</span>
-                            <span class="feature-tag">SSL automático</span>
-                            <span class="feature-tag">Backups</span>
-                        </div>
-                    </div>
-                    <div class="tool-card">
-                        <div class="tool-logo">
-                            <i class="fas fa-terminal"></i>
-                        </div>
-                        <h3>Git & GitHub</h3>
-                        <p><strong>100% GRATUITO</strong> - Control de versiones y CI/CD</p>
-                        <div class="tool-features">
-                            <span class="feature-tag">Versionado</span>
-                            <span class="feature-tag">CI/CD</span>
-                            <span class="feature-tag">Colaboración</span>
-                        </div>
-                    </div>
+                    <ul class="coverage-list">
+                        <li><i class="fas fa-check"></i> Línea de emergencia 24/7</li>
+                        <li><i class="fas fa-check"></i> Asistencia legal</li>
+                        <li><i class="fas fa-check"></i> Traducción de documentos</li>
+                        <li><i class="fas fa-check"></i> Envío de medicamentos</li>
+                        <li><i class="fas fa-check"></i> Información turística</li>
+                        <li><i class="fas fa-check"></i> Coordinación de servicios</li>
+                    </ul>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Benefits Section -->
-    <section class="benefits-section">
+    <section id="beneficios" class="benefits-section">
         <div class="container">
-            <h2>¿Por Qué Elegir Este Curso?</h2>
-            <div class="benefits-grid">
-                <div class="benefit-item">
-                    <div class="benefit-icon">
-                        <i class="fas fa-robot"></i>
+            <div class="benefits-content">
+                <div class="benefits-text">
+                    <span class="section-tag">Beneficios Exclusivos</span>
+                    <h2 class="section-title">Más que un Seguro, tu Compañero de Viaje</h2>
+                    <p class="benefits-description">
+                        Cuando viajas a Argentina, mereces la mejor protección. Nuestro seguro no solo te cubre, te acompaña en cada momento de tu aventura.
+                    </p>
+                    <div class="benefits-list">
+                        <div class="benefit-item">
+                            <div class="benefit-icon">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div class="benefit-content">
+                                <h4>Activación Inmediata</h4>
+                                <p>Tu seguro está activo desde el momento de la compra. Sin esperas ni trámites adicionales.</p>
+                            </div>
+                        </div>
+                        <div class="benefit-item">
+                            <div class="benefit-icon">
+                                <i class="fas fa-mobile-alt"></i>
+                            </div>
+                            <div class="benefit-content">
+                                <h4>App Móvil Incluida</h4>
+                                <p>Gestiona tu seguro desde tu celular. Accede a tu póliza, contacta asistencia y más.</p>
+                            </div>
+                        </div>
+                        <div class="benefit-item">
+                            <div class="benefit-icon">
+                                <i class="fas fa-file-pdf"></i>
+                            </div>
+                            <div class="benefit-content">
+                                <h4>Póliza Digital Instantánea</h4>
+                                <p>Recibe tu póliza por email al instante. Válida para trámites de visa y migración.</p>
+                            </div>
+                        </div>
+                        <div class="benefit-item">
+                            <div class="benefit-icon">
+                                <i class="fas fa-hand-holding-usd"></i>
+                            </div>
+                            <div class="benefit-content">
+                                <h4>Mejor Precio Garantizado</h4>
+                                <p>Compara nuestros precios. Si encuentras más barato, igualamos el precio.</p>
+                            </div>
+                        </div>
                     </div>
-                    <h3>Desarrollo con IA</h3>
-                    <p>Crea aplicaciones complejas usando inteligencia artificial como asistente de desarrollo</p>
                 </div>
-                <div class="benefit-item">
-                    <div class="benefit-icon">
-                        <i class="fas fa-code"></i>
+                <div class="benefits-visual">
+                    <div class="visual-card">
+                        <i class="fas fa-map-marked-alt"></i>
+                        <h3>Argentina Completa</h3>
+                        <p>Cobertura en todas las provincias y ciudades</p>
                     </div>
-                    <h3>Sin Programar</h3>
-                    <p>Aprende a construir sitios web y automatizaciones sin escribir código tradicional</p>
-                </div>
-                <div class="benefit-item">
-                    <div class="benefit-icon">
-                        <i class="fas fa-docker"></i>
-                    </div>
-                    <h3>Deploy Profesional</h3>
-                    <p>Despliega tus proyectos en VPS con Docker y Ubuntu como un profesional</p>
-                </div>
-                <div class="benefit-item">
-                    <div class="benefit-icon">
-                        <i class="fas fa-video"></i>
-                    </div>
-                    <h3>Clases Online en Vivo</h3>
-                    <p>4 clases de 2 horas cada una, 1 clase por semana, con cupos reducidos para un aprendizaje más personalizado</p>
-                </div>
-                <div class="benefit-item">
-                    <div class="benefit-icon">
+                    <div class="visual-card">
                         <i class="fas fa-users"></i>
+                        <h3>+50,000 Viajeros</h3>
+                        <p>Confían en nosotros cada año</p>
                     </div>
-                    <h3>Cupos Reducidos</h3>
-                    <p>Grupos pequeños para una atención personalizada y mejor interacción con el instructor</p>
-                </div>
-                <div class="benefit-item">
-                    <div class="benefit-icon">
-                        <i class="fas fa-certificate"></i>
+                    <div class="visual-card">
+                        <i class="fas fa-star"></i>
+                        <h3>4.9/5 Estrellas</h3>
+                        <p>Calificación de nuestros clientes</p>
                     </div>
-                    <h3>Certificado</h3>
-                    <p>Recibe un certificado de finalización del curso</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Downloads Section -->
-    <section class="downloads-section">
+    <!-- Testimonials Section -->
+    <section id="testimonios" class="testimonials-section">
         <div class="container">
-            <h2>📥 Recursos No-Code Descargables</h2>
-            <p class="section-subtitle">Accede a nuestros recursos exclusivos para dominar el desarrollo no-code</p>
-            
-            <div class="downloads-grid">
-                <div class="download-card">
-                    <div class="download-icon">
-                        <i class="fas fa-file-alt"></i>
+            <div class="section-header">
+                <span class="section-tag">Testimonios</span>
+                <h2 class="section-title">Lo que Dicen Nuestros Viajeros</h2>
+                <p class="section-subtitle">
+                    Historias reales de viajeros que confiaron en nosotros
+                </p>
+            </div>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
                     </div>
-                    <h3>Guía de Desarrollo No-Code</h3>
-                    <p>Manual completo para crear aplicaciones sin programar usando IA</p>
-                    <button class="download-btn" onclick="openDownloadModal('guia-nocode')">
-                        <i class="fas fa-download"></i>
-                        Descargar PDF
-                    </button>
+                    <p class="testimonial-text">
+                        "Tuve una emergencia médica en Mendoza y la atención fue excepcional. Me ayudaron a encontrar el mejor hospital y todo el proceso fue muy sencillo. Totalmente recomendado."
+                    </p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="author-info">
+                            <h4>María González</h4>
+                            <span>Viajó desde España</span>
+                        </div>
+                    </div>
                 </div>
-                
-                <div class="download-card">
-                    <div class="download-icon">
-                        <i class="fas fa-check-square"></i>
+                <div class="testimonial-card">
+                    <div class="testimonial-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
                     </div>
-                    <h3>Checklist de Deploy</h3>
-                    <p>Lista de verificación completa para deployar en VPS con Docker y Ubuntu</p>
-                    <button class="download-btn" onclick="openDownloadModal('checklist-deploy')">
-                        <i class="fas fa-download"></i>
-                        Descargar PDF
-                    </button>
+                    <p class="testimonial-text">
+                        "Perdí mi equipaje en el aeropuerto de Córdoba. El proceso de reembolso fue rápido y sin complicaciones. El servicio al cliente es excelente, siempre disponibles."
+                    </p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="author-info">
+                            <h4>Carlos Rodríguez</h4>
+                            <span>Viajó desde México</span>
+                        </div>
+                    </div>
                 </div>
-                
-                <div class="download-card">
-                    <div class="download-icon">
-                        <i class="fas fa-code"></i>
+                <div class="testimonial-card">
+                    <div class="testimonial-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
                     </div>
-                    <h3>Templates de Automatización</h3>
-                    <p>Plantillas listas para usar en Zapier, Make y Typebot</p>
-                    <button class="download-btn" onclick="openDownloadModal('templates-automatizacion')">
-                        <i class="fas fa-download"></i>
-                        Descargar ZIP
-                    </button>
+                    <p class="testimonial-text">
+                        "Viajé con mi familia a Bariloche y tener este seguro nos dio mucha tranquilidad. Saber que estábamos protegidos en caso de cualquier emergencia hizo que disfrutáramos más el viaje."
+                    </p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="author-info">
+                            <h4>Ana Martínez</h4>
+                            <span>Viajó desde Colombia</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Download Modal -->
-    <div id="downloadModal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeDownloadModal()">&times;</span>
-            <h3>📥 Descarga Gratuita</h3>
-            <p>Para acceder a este recurso, completa el siguiente formulario:</p>
-            
-            <form id="downloadForm">
-                <div class="form-group">
-                    <input type="email" id="downloadEmail" name="email" placeholder="Correo electrónico" required>
-                </div>
-                <div class="form-group">
-                    <input type="tel" id="downloadWhatsapp" name="whatsapp" placeholder="Número de WhatsApp" required>
-                </div>
-                <div class="form-group">
-                    <input type="hidden" id="downloadResource" name="resource">
-                </div>
-                <button type="submit" class="btn btn-primary btn-full">
-                    <i class="fas fa-download"></i>
-                    Descargar Ahora
-                </button>
-            </form>
-            
-            <p class="privacy-note">
-                <i class="fas fa-shield-alt"></i>
-                Tus datos están seguros. No compartimos tu información con terceros.
-            </p>
-        </div>
-    </div>
-
-    <!-- Registration Section -->
-    <section id="inscripcion" class="registration-section">
+    <!-- Quote Section -->
+    <section id="cotizar" class="quote-section">
         <div class="container">
-            <div class="registration-content">
-                <div class="registration-text">
-                    <h2>¡Inscríbete Ahora!</h2>
-                    <p>No pierdas la oportunidad de transformar tu negocio con las estrategias más efectivas del marketing digital.</p>
-                    <div class="price-info">
-                        <div class="price">
-                            <span class="price-original">$199</span>
-                            <span class="currency">$</span>
-                            <span class="price-promotional">69</span>
-                            <span class="period">USD por persona</span>
+            <div class="quote-content">
+                <div class="quote-text">
+                    <span class="section-tag">Cotización Rápida</span>
+                    <h2 class="section-title">Obtén tu Cotización en Menos de 2 Minutos</h2>
+                    <p class="quote-description">
+                        Completa el formulario y recibe tu cotización personalizada al instante. Sin compromiso, sin complicaciones.
+                    </p>
+                    <div class="quote-features">
+                        <div class="quote-feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Cotización instantánea</span>
                         </div>
-                        <div class="price-features">
-                            <div class="feature">
-                                <i class="fas fa-check"></i>
-                                <span>8 horas de contenido (4 clases de 2hs)</span>
-                            </div>
-                            <div class="feature">
-                                <i class="fas fa-check"></i>
-                                <span>Material descargable</span>
-                            </div>
-                            <div class="feature">
-                                <i class="fas fa-check"></i>
-                                <span>Certificado de finalización</span>
-                            </div>
-                            <div class="feature">
-                                <i class="fas fa-check"></i>
-                                <span>Soporte post-curso</span>
-                            </div>
+                        <div class="quote-feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Sin compromiso</span>
+                        </div>
+                        <div class="quote-feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Mejores precios garantizados</span>
                         </div>
                     </div>
                 </div>
-                <div class="registration-form">
-                    <form id="registrationForm">
-                        <h3>Formulario de Inscripción</h3>
+                <div class="quote-form-container">
+                    <form id="quoteForm" class="quote-form">
+                        <h3 data-translate="form.title">Solicita tu Cotización</h3>
                         <div class="form-group">
-                            <input type="text" id="nombre" name="nombre" placeholder="Nombre completo" required>
+                            <label for="nombre">Nombre Completo</label>
+                            <input type="text" id="nombre" name="nombre" placeholder="Ej: Juan Pérez" required>
                         </div>
                         <div class="form-group">
-                            <input type="email" id="email" name="email" placeholder="Correo electrónico" required>
+                            <label for="email">Correo Electrónico</label>
+                            <input type="email" id="email" name="email" placeholder="tu@email.com" required>
                         </div>
                         <div class="form-group">
-                            <input type="tel" id="telefono" name="telefono" placeholder="Teléfono" required>
+                            <label for="telefono">Teléfono</label>
+                            <input type="tel" id="telefono" name="telefono" placeholder="+54 9 11 1234-5678" required>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="fecha-inicio">Fecha de Inicio</label>
+                                <input type="date" id="fecha-inicio" name="fecha-inicio" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="fecha-fin">Fecha de Fin</label>
+                                <input type="date" id="fecha-fin" name="fecha-fin" required>
+                            </div>
                         </div>
                         <div class="form-group">
-                            <select id="experiencia" name="experiencia" required>
-                                <option value="">Nivel de experiencia</option>
-                                <option value="principiante">Principiante</option>
-                                <option value="intermedio">Intermedio</option>
-                                <option value="avanzado">Avanzado</option>
+                            <label for="viajeros">Número de Viajeros</label>
+                            <select id="viajeros" name="viajeros" required>
+                                <option value="">Selecciona...</option>
+                                <option value="1">1 viajero</option>
+                                <option value="2">2 viajeros</option>
+                                <option value="3">3 viajeros</option>
+                                <option value="4">4 viajeros</option>
+                                <option value="5+">5 o más viajeros</option>
                             </select>
                         </div>
                         <div class="form-group">
-                            <textarea id="objetivos" name="objetivos" placeholder="¿Qué esperas lograr con este curso?" rows="3"></textarea>
+                            <label for="plan">Plan de Cobertura</label>
+                            <select id="plan" name="plan" required>
+                                <option value="">Selecciona un plan...</option>
+                                <option value="basico">Básico - Cobertura Médica</option>
+                                <option value="completo">Completo - Protección Total</option>
+                                <option value="premium">Premium - Máxima Cobertura</option>
+                            </select>
                         </div>
-                        <button type="submit" class="btn btn-primary btn-full">
-                            <i class="fas fa-rocket"></i>
-                            Inscribirse Ahora
+                        <button type="submit" class="btn btn-primary btn-full" data-translate="form.submit">
+                            <i class="fas fa-paper-plane"></i>
+                            Solicitar Cotización Gratuita
                         </button>
+                        <p class="form-note" data-translate="form.note">
+                            <i class="fas fa-shield-alt"></i>
+                            Tus datos están protegidos. No compartimos tu información con terceros.
+                        </p>
                     </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Preguntas Frecuentes</span>
+                <h2 class="section-title">Todo lo que Necesitas Saber</h2>
+            </div>
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>¿Cuánto tiempo antes de viajar debo contratar el seguro?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Puedes contratar tu seguro hasta el día anterior a tu viaje. Sin embargo, recomendamos hacerlo con al menos 7 días de anticipación para asegurar la activación completa y recibir tu póliza a tiempo.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>¿El seguro cubre actividades de aventura en Argentina?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Sí, nuestros planes incluyen cobertura para actividades como trekking, rafting, esquí y otras actividades de aventura comunes en Argentina. Consulta los términos específicos según tu plan.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>¿Qué pasa si necesito atención médica en Argentina?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Simplemente llama a nuestra línea de emergencia 24/7. Nuestro equipo te ayudará a encontrar el centro médico más cercano, coordinará tu atención y se encargará de todos los trámites necesarios.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>¿Puedo extender mi seguro si decido quedarme más tiempo?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Sí, puedes extender tu cobertura en cualquier momento. Contacta a nuestro equipo y te ayudaremos a actualizar tu póliza sin complicaciones.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>¿El seguro es válido para obtener visa de turista?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Sí, nuestra póliza cumple con los requisitos para visas de turista en Argentina. Te proporcionamos la documentación necesaria para tu trámite migratorio.</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -692,31 +527,55 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section">
-                    <h3>Marketing IA</h3>
-                    <p>Transformando negocios con estrategias digitales efectivas</p>
+                    <div class="footer-brand">
+                        <img src="https://www.delcamposeguros.com/files/imageedit_1_6276820784.png" alt="Del Campo Seguros" class="logo-delcampo-footer">
+                        <span>Del Campo Seguros</span>
+                    </div>
+                    <p>Tu compañero de confianza para descubrir Argentina. Más de 15 años protegiendo viajeros con excelencia y compromiso.</p>
+                    <div class="footer-social">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Enlaces Rápidos</h4>
+                    <ul>
+                        <li><a href="#inicio">Inicio</a></li>
+                        <li><a href="#coberturas">Coberturas</a></li>
+                        <li><a href="#beneficios">Beneficios</a></li>
+                        <li><a href="#testimonios">Testimonios</a></li>
+                        <li><a href="#cotizar">Cotizar</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Información</h4>
+                    <ul>
+                        <li><a href="#">Términos y Condiciones</a></li>
+                        <li><a href="#">Política de Privacidad</a></li>
+                        <li><a href="#">Preguntas Frecuentes</a></li>
+                        <li><a href="#">Contacto</a></li>
+                    </ul>
                 </div>
                 <div class="footer-section">
                     <h4>Contacto</h4>
-                    <p><i class="fas fa-envelope"></i> marketing@ideasdevops.com</p>
-                    <p><i class="fas fa-phone"></i> +54 9 261 315-1000</p>
-                </div>
-                <div class="footer-section">
-                    <h4>Redes Sociales</h4>
-                    <div class="social-links">
-                        <a href="https://facebook.com/ideasdevops"><i class="fab fa-facebook"></i></a>
-                        <a href="https://instagram.com/ideasdevops"><i class="fab fa-instagram"></i></a>
-                        <a href="https://linkedin.com/company/ideasdevops"><i class="fab fa-linkedin"></i></a>
-                        <a href="https://twitter.com/ideasdevops"><i class="fab fa-twitter"></i></a>
-                    </div>
+                    <ul>
+                        <li><i class="fas fa-envelope"></i> manuelj@delcampobroker.com</li>
+                        <li><i class="fas fa-map-marker-alt"></i> Mendoza, Argentina</li>
+                        <li><i class="fas fa-user-tie"></i> Manuel del Campo - Broker Especializado</li>
+                        <li><i class="fas fa-clock"></i> Atención 24/7</li>
+                    </ul>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2024 Marketing IA. Todos los derechos reservados.</p>
+                <p>&copy; 2024 Del Campo Seguros. Todos los derechos reservados. | Broker especializado en seguros de viaje.</p>
             </div>
         </div>
     </footer>
 
     <script src="config.js"></script>
+    <script src="translations.js"></script>
     <script src="script.js"></script>
 </body>
 </html>

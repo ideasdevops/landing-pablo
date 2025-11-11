@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * Servidor HTTP simple para la landing page de Marketing IA
+ * Servidor HTTP simple para la landing page de Seguro Viajero Argentina
  * Puerto: 8008
  */
 
@@ -94,15 +94,15 @@ const server = http.createServer((req, res) => {
 
 server.listen(PORT, HOST, () => {
     console.log('='.repeat(60));
-    console.log('🚀 SERVIDOR DE MARKETING IA INICIADO');
+    console.log('🚀 SERVIDOR DE SEGURO VIAJERO ARGENTINA INICIADO');
     console.log('='.repeat(60));
     console.log(`📍 URL: http://${HOST}:${PORT}`);
     console.log(`📁 Directorio: ${__dirname}`);
     console.log('='.repeat(60));
     console.log('📋 Archivos disponibles:');
-    console.log('   • index.html - Página principal');
-    console.log('   • ejemplos.html - Página de ejemplos');
-    console.log('   • assets/ - Logo de IdeasDevOps');
+    console.log('   • index.html - Landing page de seguros para viajeros');
+    console.log('   • styles.css - Estilos del sitio');
+    console.log('   • script.js - Funcionalidades JavaScript');
     console.log('='.repeat(60));
     console.log('🛑 Para detener el servidor: Ctrl+C');
     console.log('='.repeat(60));

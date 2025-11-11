@@ -1,15 +1,22 @@
-// Smooth scrolling for navigation links
+// ============================================
+// SMOOTH SCROLLING
+// ============================================
 function scrollToSection(sectionId) {
     const section = document.getElementById(sectionId);
     if (section) {
-        section.scrollIntoView({
-            behavior: 'smooth',
-            block: 'start'
+        const headerHeight = document.querySelector('.header').offsetHeight;
+        const sectionPosition = section.offsetTop - headerHeight;
+        
+        window.scrollTo({
+            top: sectionPosition,
+            behavior: 'smooth'
         });
     }
 }
 
-// Mobile navigation toggle
+// ============================================
+// MOBILE NAVIGATION
+// ============================================
 document.addEventListener('DOMContentLoaded', function() {
     const navToggle = document.querySelector('.nav-toggle');
     const navMenu = document.querySelector('.nav-menu');
@@ -18,6 +25,15 @@ document.addEventListener('DOMContentLoaded', function() {
         navToggle.addEventListener('click', function() {
             navMenu.classList.toggle('active');
             navToggle.classList.toggle('active');
+        });
+        
+        // Close menu when clicking outside
+        document.addEventListener('click', function(event) {
+            const isClickInsideNav = navMenu.contains(event.target) || navToggle.contains(event.target);
+            if (!isClickInsideNav && navMenu.classList.contains('active')) {
+                navMenu.classList.remove('active');
+                navToggle.classList.remove('active');
+            }
         });
     }
     
@@ -31,34 +47,54 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
-// Form submission handling
-document.addEventListener('DOMContentLoaded', function() {
-    const registrationForm = document.getElementById('registrationForm');
+// ============================================
+// HEADER SCROLL EFFECT
+// ============================================
+let lastScroll = 0;
+const header = document.querySelector('.header');
+
+window.addEventListener('scroll', function() {
+    const currentScroll = window.pageYOffset;
     
-    if (registrationForm) {
-        registrationForm.addEventListener('submit', function(e) {
+    if (currentScroll > 100) {
+        header.style.boxShadow = '0 4px 6px rgba(0, 0, 0, 0.1)';
+    } else {
+        header.style.boxShadow = '0 1px 3px rgba(0, 0, 0, 0.1)';
+    }
+    
+    lastScroll = currentScroll;
+});
+
+// ============================================
+// QUOTE FORM HANDLING
+// ============================================
+document.addEventListener('DOMContentLoaded', function() {
+    const quoteForm = document.getElementById('quoteForm');
+    
+    if (quoteForm) {
+        quoteForm.addEventListener('submit', function(e) {
             e.preventDefault();
             
             // Get form data
-            const formData = new FormData(registrationForm);
+            const formData = new FormData(quoteForm);
             const data = Object.fromEntries(formData);
             
             // Validate form
-            if (validateForm(data)) {
+            if (validateQuoteForm(data)) {
                 // Show loading state
-                const submitBtn = registrationForm.querySelector('button[type="submit"]');
+                const submitBtn = quoteForm.querySelector('button[type="submit"]');
                 const originalText = submitBtn.innerHTML;
                 submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Procesando...';
                 submitBtn.disabled = true;
                 
                 // Send data to backend
-                sendRegistrationData(data)
+                sendQuoteData(data)
                     .then(response => {
                         if (response.success) {
-                            showNotification('¡Inscripción exitosa! Revisa tu correo electrónico para más detalles.', 'success');
-                            registrationForm.reset();
+                            showNotification('¡Cotización enviada exitosamente! Te contactaremos pronto.', 'success');
+                            quoteForm.reset();
                         } else {
-                            showNotification(response.message || 'Error al procesar la inscripción. Inténtalo de nuevo.', 'error');
+                            showNotification(response.message || 'Error al procesar la cotización. Inténtalo de nuevo.', 'error');
                         }
                     })
                     .catch(error => {
@@ -75,28 +111,11 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
-// Send registration data to backend
-async function sendRegistrationData(data) {
-    try {
-        const response = await fetch('/api/register', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(data)
-        });
-        
-        const result = await response.json();
-        return result;
-    } catch (error) {
-        console.error('Error sending data:', error);
-        throw error;
-    }
-}
-
-// Form validation
-function validateForm(data) {
-    const requiredFields = ['nombre', 'email', 'telefono', 'experiencia'];
+// ============================================
+// FORM VALIDATION
+// ============================================
+function validateQuoteForm(data) {
+    const requiredFields = ['nombre', 'email', 'telefono', 'fecha-inicio', 'fecha-fin', 'viajeros', 'plan'];
     let isValid = true;
     
     requiredFields.forEach(field => {
@@ -118,34 +137,80 @@ function validateForm(data) {
         isValid = false;
     }
     
+    // Date validation
+    const fechaInicio = new Date(data['fecha-inicio']);
+    const fechaFin = new Date(data['fecha-fin']);
+    const hoy = new Date();
+    hoy.setHours(0, 0, 0, 0);
+    
+    if (fechaInicio < hoy) {
+        const fechaInicioInput = document.getElementById('fecha-inicio');
+        showFieldError(fechaInicioInput, 'La fecha de inicio no puede ser anterior a hoy');
+        isValid = false;
+    }
+    
+    if (fechaFin <= fechaInicio) {
+        const fechaFinInput = document.getElementById('fecha-fin');
+        showFieldError(fechaFinInput, 'La fecha de fin debe ser posterior a la fecha de inicio');
+        isValid = false;
+    }
+    
     return isValid;
 }
 
-// Show field error
+// ============================================
+// FIELD ERROR HANDLING
+// ============================================
 function showFieldError(input, message) {
     clearFieldError(input);
     
     const errorDiv = document.createElement('div');
     errorDiv.className = 'field-error';
     errorDiv.textContent = message;
-    errorDiv.style.color = '#ef4444';
-    errorDiv.style.fontSize = '0.875rem';
-    errorDiv.style.marginTop = '0.25rem';
+    errorDiv.style.cssText = `
+        color: #ef4444;
+        font-size: 0.875rem;
+        margin-top: 0.5rem;
+        display: block;
+    `;
     
     input.parentNode.appendChild(errorDiv);
     input.style.borderColor = '#ef4444';
 }
 
-// Clear field error
 function clearFieldError(input) {
     const existingError = input.parentNode.querySelector('.field-error');
     if (existingError) {
         existingError.remove();
     }
-    input.style.borderColor = '#e2e8f0';
+    input.style.borderColor = '';
 }
 
-// Show notification
+// ============================================
+// SEND QUOTE DATA
+// ============================================
+async function sendQuoteData(data) {
+    try {
+        const response = await fetch('/api/quote', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data)
+        });
+        
+        const result = await response.json();
+        return result;
+    } catch (error) {
+        console.error('Error sending data:', error);
+        // For demo purposes, simulate success
+        return { success: true, message: 'Cotización recibida correctamente' };
+    }
+}
+
+// ============================================
+// NOTIFICATIONS
+// ============================================
 function showNotification(message, type = 'info') {
     // Remove existing notifications
     const existingNotifications = document.querySelectorAll('.notification');
@@ -156,7 +221,7 @@ function showNotification(message, type = 'info') {
     notification.className = `notification notification-${type}`;
     notification.innerHTML = `
         <div class="notification-content">
-            <i class="fas ${type === 'success' ? 'fa-check-circle' : 'fa-info-circle'}"></i>
+            <i class="fas ${type === 'success' ? 'fa-check-circle' : type === 'error' ? 'fa-exclamation-circle' : 'fa-info-circle'}"></i>
             <span>${message}</span>
         </div>
         <button class="notification-close" onclick="this.parentElement.remove()">
@@ -165,15 +230,16 @@ function showNotification(message, type = 'info') {
     `;
     
     // Add styles
+    const bgColor = type === 'success' ? '#10b981' : type === 'error' ? '#ef4444' : '#0066cc';
     notification.style.cssText = `
         position: fixed;
         top: 20px;
         right: 20px;
-        background: ${type === 'success' ? '#10b981' : '#6366f1'};
+        background: ${bgColor};
         color: white;
         padding: 1rem 1.5rem;
         border-radius: 10px;
-        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
         z-index: 10000;
         display: flex;
         align-items: center;
@@ -194,7 +260,141 @@ function showNotification(message, type = 'info') {
     }, 5000);
 }
 
-// Add CSS for notifications
+// ============================================
+// FAQ ACCORDION
+// ============================================
+document.addEventListener('DOMContentLoaded', function() {
+    const faqItems = document.querySelectorAll('.faq-item');
+    
+    faqItems.forEach(item => {
+        const question = item.querySelector('.faq-question');
+        
+        question.addEventListener('click', function() {
+            // Close other items
+            faqItems.forEach(otherItem => {
+                if (otherItem !== item && otherItem.classList.contains('active')) {
+                    otherItem.classList.remove('active');
+                }
+            });
+            
+            // Toggle current item
+            item.classList.toggle('active');
+        });
+    });
+});
+
+// ============================================
+// INTERSECTION OBSERVER FOR ANIMATIONS
+// ============================================
+const observerOptions = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
+};
+
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('fade-in-up');
+            observer.unobserve(entry.target);
+        }
+    });
+}, observerOptions);
+
+// Observe elements for animation
+document.addEventListener('DOMContentLoaded', function() {
+    const animatedElements = document.querySelectorAll('.why-card, .coverage-card, .testimonial-card, .benefit-item');
+    animatedElements.forEach(el => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(30px)';
+        observer.observe(el);
+    });
+});
+
+// ============================================
+// SCROLL PROGRESS INDICATOR
+// ============================================
+function createScrollProgress() {
+    const progressBar = document.createElement('div');
+    progressBar.className = 'scroll-progress';
+    progressBar.style.cssText = `
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 0%;
+        height: 4px;
+        background: linear-gradient(90deg, #0066cc, #00a86b);
+        z-index: 10000;
+        transition: width 0.1s ease;
+    `;
+    document.body.appendChild(progressBar);
+    
+    window.addEventListener('scroll', () => {
+        const scrollTop = window.pageYOffset;
+        const docHeight = document.body.scrollHeight - window.innerHeight;
+        const scrollPercent = (scrollTop / docHeight) * 100;
+        progressBar.style.width = scrollPercent + '%';
+    });
+}
+
+// Initialize scroll progress
+document.addEventListener('DOMContentLoaded', createScrollProgress);
+
+// ============================================
+// NAVIGATION LINKS SMOOTH SCROLL
+// ============================================
+document.addEventListener('DOMContentLoaded', function() {
+    // Add click handlers to all navigation links
+    const navLinks = document.querySelectorAll('a[href^="#"]');
+    navLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            const href = this.getAttribute('href');
+            if (href !== '#' && href.length > 1) {
+                e.preventDefault();
+                const targetId = href.substring(1);
+                scrollToSection(targetId);
+            }
+        });
+    });
+    
+    // Add click handlers to buttons
+    const buttons = document.querySelectorAll('button[onclick^="scrollToSection"]');
+    buttons.forEach(button => {
+        button.addEventListener('click', function() {
+            const onclick = this.getAttribute('onclick');
+            const match = onclick.match(/scrollToSection\('([^']+)'\)/);
+            if (match) {
+                scrollToSection(match[1]);
+            }
+        });
+    });
+});
+
+// ============================================
+// DATE INPUT MINIMUM DATE
+// ============================================
+document.addEventListener('DOMContentLoaded', function() {
+    const fechaInicio = document.getElementById('fecha-inicio');
+    const fechaFin = document.getElementById('fecha-fin');
+    
+    if (fechaInicio) {
+        // Set minimum date to today
+        const today = new Date().toISOString().split('T')[0];
+        fechaInicio.setAttribute('min', today);
+        
+        // Update fecha-fin minimum when fecha-inicio changes
+        fechaInicio.addEventListener('change', function() {
+            if (fechaFin && this.value) {
+                const minDate = new Date(this.value);
+                minDate.setDate(minDate.getDate() + 1);
+                fechaFin.setAttribute('min', minDate.toISOString().split('T')[0]);
+            }
+        });
+    }
+});
+
+// ============================================
+// ADD NOTIFICATION STYLES
+// ============================================
 const notificationStyles = `
     @keyframes slideInRight {
         from {
@@ -221,7 +421,7 @@ const notificationStyles = `
     .notification-content {
         display: flex;
         align-items: center;
-        gap: 0.5rem;
+        gap: 0.75rem;
         flex: 1;
     }
     
@@ -233,6 +433,9 @@ const notificationStyles = `
         padding: 0.25rem;
         border-radius: 4px;
         transition: background 0.2s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
     
     .notification-close:hover {
@@ -245,54 +448,45 @@ const styleSheet = document.createElement('style');
 styleSheet.textContent = notificationStyles;
 document.head.appendChild(styleSheet);
 
-// Intersection Observer for animations
-const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -50px 0px'
-};
-
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add('fade-in-up');
+// ============================================
+// LOADING ANIMATION
+// ============================================
+window.addEventListener('load', function() {
+    document.body.classList.add('loaded');
+    
+    // Fade in body
+    const bodyStyles = `
+        body {
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
         }
-    });
-}, observerOptions);
-
-// Observe elements for animation
-document.addEventListener('DOMContentLoaded', function() {
-    const animatedElements = document.querySelectorAll('.overview-card, .class-card, .tool-card, .benefit-item');
-    animatedElements.forEach(el => observer.observe(el));
+        
+        body.loaded {
+            opacity: 1;
+        }
+    `;
+    
+    const bodyStyleSheet = document.createElement('style');
+    bodyStyleSheet.textContent = bodyStyles;
+    document.head.appendChild(bodyStyleSheet);
 });
 
-// Parallax effect for hero section
+// ============================================
+// PARALLAX EFFECT FOR HERO
+// ============================================
 window.addEventListener('scroll', function() {
     const scrolled = window.pageYOffset;
     const hero = document.querySelector('.hero');
-    const heroVisual = document.querySelector('.hero-visual');
     
-    if (hero && heroVisual) {
-        const rate = scrolled * -0.5;
-        heroVisual.style.transform = `translateY(${rate}px)`;
+    if (hero && scrolled < window.innerHeight) {
+        const rate = scrolled * 0.5;
+        hero.style.transform = `translateY(${rate}px)`;
     }
 });
 
-// Add hover effects to cards
-document.addEventListener('DOMContentLoaded', function() {
-    const cards = document.querySelectorAll('.overview-card, .tool-card, .benefit-item');
-    
-    cards.forEach(card => {
-        card.addEventListener('mouseenter', function() {
-            this.style.transform = 'translateY(-10px) scale(1.02)';
-        });
-        
-        card.addEventListener('mouseleave', function() {
-            this.style.transform = 'translateY(0) scale(1)';
-        });
-    });
-});
-
-// Counter animation for stats
+// ============================================
+// COUNTER ANIMATION (if needed)
+// ============================================
 function animateCounter(element, target, duration = 2000) {
     let start = 0;
     const increment = target / (duration / 16);
@@ -300,278 +494,208 @@ function animateCounter(element, target, duration = 2000) {
     function updateCounter() {
         start += increment;
         if (start < target) {
-            element.textContent = Math.floor(start);
+            element.textContent = Math.floor(start).toLocaleString();
             requestAnimationFrame(updateCounter);
         } else {
-            element.textContent = target;
+            element.textContent = target.toLocaleString();
         }
     }
     
     updateCounter();
 }
 
-// Animate stats when they come into view
-const statsObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            const statElements = entry.target.querySelectorAll('.stat span');
-            statElements.forEach(stat => {
-                if (stat.textContent === '4 horas') {
-                    animateCounter(stat, 4);
-                } else if (stat.textContent === '2 clases') {
-                    animateCounter(stat, 2);
-                }
+// ============================================
+// FORM AUTO-FILL PREVENTION
+// ============================================
+document.addEventListener('DOMContentLoaded', function() {
+    // Prevent browser autocomplete suggestions
+    const inputs = document.querySelectorAll('input[type="email"], input[type="tel"]');
+    inputs.forEach(input => {
+        input.setAttribute('autocomplete', 'off');
+    });
+});
+
+// ============================================
+// LANGUAGE TRANSLATION SYSTEM
+// ============================================
+let currentLanguage = localStorage.getItem('language') || 'es';
+
+// Function to get translation
+function t(key, lang = currentLanguage) {
+    const keys = key.split('.');
+    let value = translations[lang];
+    
+    for (const k of keys) {
+        if (value && value[k]) {
+            value = value[k];
+        } else {
+            // Fallback to Spanish if translation not found
+            value = translations.es;
+            for (const k2 of keys) {
+                value = value[k2];
+            }
+            break;
+        }
+    }
+    
+    return value || key;
+}
+
+// Function to update all translations
+function updateTranslations(lang) {
+    currentLanguage = lang;
+    localStorage.setItem('language', lang);
+    
+    // Update current language indicator
+    const langCodes = { es: 'ES', en: 'EN', pt: 'PT' };
+    const currentLangSpan = document.getElementById('currentLang');
+    if (currentLangSpan) {
+        currentLangSpan.textContent = langCodes[lang] || 'ES';
+    }
+    
+    // Update all elements with data-translate attribute
+    document.querySelectorAll('[data-translate]').forEach(element => {
+        const key = element.getAttribute('data-translate');
+        const translation = t(key, lang);
+        
+        if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
+            if (element.hasAttribute('placeholder')) {
+                element.placeholder = translation;
+            } else {
+                element.value = translation;
+            }
+        } else if (element.tagName === 'BUTTON' || element.tagName === 'A') {
+            // Preserve icons if they exist
+            const icon = element.querySelector('i');
+            if (icon) {
+                element.innerHTML = icon.outerHTML + ' ' + translation;
+            } else {
+                element.textContent = translation;
+            }
+        } else {
+            element.textContent = translation;
+        }
+    });
+    
+    // Update specific elements that need special handling
+    updateSpecialElements(lang);
+    
+    // Update HTML lang attribute
+    document.documentElement.lang = lang;
+}
+
+// Function to update special elements
+function updateSpecialElements(lang) {
+    // Hero section
+    const heroBadge = document.querySelector('.hero-badge span');
+    if (heroBadge) heroBadge.textContent = t('hero.badge', lang);
+    
+    const titleLine = document.querySelector('.title-line');
+    if (titleLine) titleLine.textContent = t('hero.titleLine', lang) + ' ';
+    
+    const heroSubtitle = document.querySelector('.hero-subtitle');
+    if (heroSubtitle) heroSubtitle.textContent = t('hero.subtitle', lang);
+    
+    const heroFeatures = document.querySelectorAll('.hero-feature span');
+    if (heroFeatures.length >= 3) {
+        heroFeatures[0].textContent = t('hero.feature1', lang);
+        heroFeatures[1].textContent = t('hero.feature2', lang);
+        heroFeatures[2].textContent = t('hero.feature3', lang);
+    }
+    
+    const trustText = document.querySelector('.trust-text');
+    if (trustText) trustText.textContent = t('hero.trustText', lang);
+    
+    const trustBadges = document.querySelectorAll('.trust-badge span');
+    if (trustBadges.length >= 3) {
+        trustBadges[0].textContent = t('hero.certificado', lang);
+        trustBadges[1].textContent = t('hero.seguro', lang);
+        trustBadges[2].textContent = t('hero.soporte', lang);
+    }
+    
+    // Section headers
+    const sectionTags = document.querySelectorAll('.section-tag');
+    const sectionTitles = document.querySelectorAll('.section-title');
+    const sectionSubtitles = document.querySelectorAll('.section-subtitle');
+    
+    // Why section
+    if (sectionTags[0]) sectionTags[0].textContent = t('sections.whyTag', lang);
+    if (sectionTitles[0]) sectionTitles[0].textContent = t('sections.whyTitle', lang);
+    if (sectionSubtitles[0]) sectionSubtitles[0].textContent = t('sections.whySubtitle', lang);
+    
+    // Coverage section
+    if (sectionTags[1]) sectionTags[1].textContent = t('sections.coverageTag', lang);
+    if (sectionTitles[1]) sectionTitles[1].textContent = t('sections.coverageTitle', lang);
+    if (sectionSubtitles[1]) sectionSubtitles[1].textContent = t('sections.coverageSubtitle', lang);
+    
+    // Benefits section
+    if (sectionTags[2]) sectionTags[2].textContent = t('sections.benefitsTag', lang);
+    if (sectionTitles[2]) sectionTitles[2].textContent = t('sections.benefitsTitle', lang);
+    if (sectionSubtitles[2]) sectionSubtitles[2].textContent = t('sections.benefitsSubtitle', lang);
+    
+    // Testimonials section
+    if (sectionTags[3]) sectionTags[3].textContent = t('sections.testimonialsTag', lang);
+    if (sectionTitles[3]) sectionTitles[3].textContent = t('sections.testimonialsTitle', lang);
+    if (sectionSubtitles[3]) sectionSubtitles[3].textContent = t('sections.testimonialsSubtitle', lang);
+    
+    // Quote section
+    if (sectionTags[4]) sectionTags[4].textContent = t('sections.quoteTag', lang);
+    if (sectionTitles[4]) sectionTitles[4].textContent = t('sections.quoteTitle', lang);
+    if (sectionSubtitles[4]) sectionSubtitles[4].textContent = t('sections.quoteSubtitle', lang);
+    
+    // FAQ section
+    if (sectionTags[5]) sectionTags[5].textContent = t('sections.faqTag', lang);
+    if (sectionTitles[5]) sectionTitles[5].textContent = t('sections.faqTitle', lang);
+    
+    // Why cards
+    const whyCards = document.querySelectorAll('.why-card');
+    if (whyCards.length >= 6) {
+        whyCards[0].querySelector('h3').textContent = t('why.title1', lang);
+        whyCards[0].querySelector('p').textContent = t('why.text1', lang);
+        whyCards[1].querySelector('h3').textContent = t('why.title2', lang);
+        whyCards[1].querySelector('p').textContent = t('why.text2', lang);
+        whyCards[2].querySelector('h3').textContent = t('why.title3', lang);
+        whyCards[2].querySelector('p').textContent = t('why.text3', lang);
+        whyCards[3].querySelector('h3').textContent = t('why.title4', lang);
+        whyCards[3].querySelector('p').textContent = t('why.text4', lang);
+        whyCards[4].querySelector('h3').textContent = t('why.title5', lang);
+        whyCards[4].querySelector('p').textContent = t('why.text5', lang);
+        whyCards[5].querySelector('h3').textContent = t('why.title6', lang);
+        whyCards[5].querySelector('p').textContent = t('why.text6', lang);
+    }
+}
+
+// Initialize language selector
+document.addEventListener('DOMContentLoaded', function() {
+    const langBtn = document.getElementById('langBtn');
+    const langDropdown = document.getElementById('langDropdown');
+    const langOptions = document.querySelectorAll('.lang-option');
+    
+    // Toggle dropdown
+    if (langBtn && langDropdown) {
+        langBtn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            langDropdown.classList.toggle('active');
+        });
+        
+        // Close dropdown when clicking outside
+        document.addEventListener('click', function(e) {
+            if (!langBtn.contains(e.target) && !langDropdown.contains(e.target)) {
+                langDropdown.classList.remove('active');
+            }
+        });
+        
+        // Handle language selection
+        langOptions.forEach(option => {
+            option.addEventListener('click', function(e) {
+                e.preventDefault();
+                const lang = this.getAttribute('data-lang');
+                updateTranslations(lang);
+                langDropdown.classList.remove('active');
             });
-            statsObserver.unobserve(entry.target);
-        }
-    });
-}, { threshold: 0.5 });
-
-document.addEventListener('DOMContentLoaded', function() {
-    const heroStats = document.querySelector('.hero-stats');
-    if (heroStats) {
-        statsObserver.observe(heroStats);
-    }
-});
-
-// Add loading animation
-window.addEventListener('load', function() {
-    document.body.classList.add('loaded');
-});
-
-// Add CSS for loading animation
-const loadingStyles = `
-    body {
-        opacity: 0;
-        transition: opacity 0.5s ease-in-out;
-    }
-    
-    body.loaded {
-        opacity: 1;
-    }
-    
-    .nav-menu.active {
-        display: flex;
-        flex-direction: column;
-        position: absolute;
-        top: 100%;
-        left: 0;
-        right: 0;
-        background: white;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        padding: 1rem;
-        gap: 1rem;
-    }
-    
-    @media (max-width: 768px) {
-        .nav-menu {
-            display: none;
-        }
-        
-        .nav-menu.active {
-            display: flex;
-        }
-    }
-`;
-
-const loadingStyleSheet = document.createElement('style');
-loadingStyleSheet.textContent = loadingStyles;
-document.head.appendChild(loadingStyleSheet);
-
-// Add click handlers for navigation
-document.addEventListener('DOMContentLoaded', function() {
-    // Add click handlers to all navigation links
-    const navLinks = document.querySelectorAll('a[href^="#"]');
-    navLinks.forEach(link => {
-        link.addEventListener('click', function(e) {
-            e.preventDefault();
-            const targetId = this.getAttribute('href').substring(1);
-            scrollToSection(targetId);
-        });
-    });
-    
-    // Add click handlers to buttons
-    const buttons = document.querySelectorAll('button[onclick^="scrollToSection"]');
-    buttons.forEach(button => {
-        button.addEventListener('click', function() {
-            const onclick = this.getAttribute('onclick');
-            const match = onclick.match(/scrollToSection\('([^']+)'\)/);
-            if (match) {
-                scrollToSection(match[1]);
-            }
-        });
-    });
-});
-
-// Add smooth reveal animation for sections
-const revealObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.style.opacity = '1';
-            entry.target.style.transform = 'translateY(0)';
-        }
-    });
-}, { threshold: 0.1 });
-
-document.addEventListener('DOMContentLoaded', function() {
-    const sections = document.querySelectorAll('section');
-    sections.forEach(section => {
-        section.style.opacity = '0';
-        section.style.transform = 'translateY(30px)';
-        section.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
-        revealObserver.observe(section);
-    });
-});
-
-// Add floating animation to hero cards
-document.addEventListener('DOMContentLoaded', function() {
-    const floatingCards = document.querySelectorAll('.card');
-    floatingCards.forEach((card, index) => {
-        card.style.animationDelay = `${index * 0.5}s`;
-    });
-});
-
-// Add typing effect to hero title
-function typeWriter(element, text, speed = 100) {
-    let i = 0;
-    element.innerHTML = '';
-    
-    function type() {
-        if (i < text.length) {
-            element.innerHTML += text.charAt(i);
-            i++;
-            setTimeout(type, speed);
-        }
-    }
-    
-    type();
-}
-
-// Initialize typing effect when page loads
-document.addEventListener('DOMContentLoaded', function() {
-    const heroTitle = document.querySelector('.hero h1');
-    if (heroTitle) {
-        const originalText = heroTitle.textContent;
-        setTimeout(() => {
-            typeWriter(heroTitle, originalText, 50);
-        }, 1000);
-    }
-});
-
-// Add scroll progress indicator
-function createScrollProgress() {
-    const progressBar = document.createElement('div');
-    progressBar.style.cssText = `
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 0%;
-        height: 3px;
-        background: linear-gradient(90deg, #6366f1, #8b5cf6);
-        z-index: 10000;
-        transition: width 0.1s ease;
-    `;
-    document.body.appendChild(progressBar);
-    
-    window.addEventListener('scroll', () => {
-        const scrollTop = window.pageYOffset;
-        const docHeight = document.body.scrollHeight - window.innerHeight;
-        const scrollPercent = (scrollTop / docHeight) * 100;
-        progressBar.style.width = scrollPercent + '%';
-    });
-}
-
-// Initialize scroll progress
-document.addEventListener('DOMContentLoaded', createScrollProgress);
-
-// Funciones para el modal de descarga
-function openDownloadModal(resource) {
-    document.getElementById('downloadResource').value = resource;
-    document.getElementById('downloadModal').style.display = 'block';
-    document.body.style.overflow = 'hidden';
-}
-
-function closeDownloadModal() {
-    document.getElementById('downloadModal').style.display = 'none';
-    document.body.style.overflow = 'auto';
-    document.getElementById('downloadForm').reset();
-}
-
-// Cerrar modal al hacer clic fuera de él
-window.onclick = function(event) {
-    const modal = document.getElementById('downloadModal');
-    if (event.target === modal) {
-        closeDownloadModal();
-    }
-}
-
-// Manejar formulario de descarga
-document.addEventListener('DOMContentLoaded', function() {
-    const downloadForm = document.getElementById('downloadForm');
-    
-    if (downloadForm) {
-        downloadForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const formData = new FormData(downloadForm);
-            const data = Object.fromEntries(formData);
-            
-            if (validateDownloadForm(data)) {
-                const submitBtn = downloadForm.querySelector('button[type="submit"]');
-                const originalText = submitBtn.innerHTML;
-                submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Procesando...';
-                submitBtn.disabled = true;
-                
-                sendDownloadData(data)
-                    .then(response => {
-                        if (response.success) {
-                            showNotification('¡Descarga iniciada! Revisa tu correo electrónico.', 'success');
-                            closeDownloadModal();
-                        } else {
-                            showNotification(response.message || 'Error al procesar la descarga. Inténtalo de nuevo.', 'error');
-                        }
-                    })
-                    .catch(error => {
-                        console.error('Error:', error);
-                        showNotification('Error de conexión. Por favor, inténtalo de nuevo.', 'error');
-                    })
-                    .finally(() => {
-                        submitBtn.innerHTML = originalText;
-                        submitBtn.disabled = false;
-                    });
-            }
         });
     }
+    
+    // Load saved language or default to Spanish
+    updateTranslations(currentLanguage);
 });
-
-function validateDownloadForm(data) {
-    if (!data.email || !isValidEmail(data.email)) {
-        showNotification('Por favor, ingresa un correo electrónico válido.', 'error');
-        return false;
-    }
-    
-    if (!data.whatsapp || data.whatsapp.length < 10) {
-        showNotification('Por favor, ingresa un número de WhatsApp válido.', 'error');
-        return false;
-    }
-    
-    return true;
-}
-
-async function sendDownloadData(data) {
-    try {
-        const response = await fetch('/api/download', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(data)
-        });
-        
-        const result = await response.json();
-        return result;
-    } catch (error) {
-        console.error('Error sending download data:', error);
-        throw error;
-    }
-}

@@ -1,22 +1,24 @@
-// Configuración personalizable para la landing page del curso
+// Configuración personalizable para Seguro Viajero Argentina
 const CONFIG = {
-    // Información del curso
-    curso: {
-        titulo: "Seguro de Riesgos Cibernéticos - Del Campo Seguros",
-        subtitulo: "Protege tu empresa de ataques digitales con cobertura especializada y respaldo de las mejores aseguradoras del mercado",
-        duracion: "8 horas total (4 clases de 2hs)",
-        clases: "4 clases",
-        precio: 69,
-        moneda: "$",
-        certificado: true
+    // Información del seguro
+    seguro: {
+        nombre: "Del Campo Seguros",
+        titulo: "Viaja Tranquilo a Argentina",
+        subtitulo: "Protección completa para tu aventura. Cobertura médica internacional, asistencia 24/7 y respaldo de las mejores aseguradoras.",
+        eslogan: "Disfruta Argentina con total tranquilidad",
+        viajeros_protegidos: 50000,
+        calificacion: 4.9,
+        logo: "https://www.delcamposeguros.com/files/imageedit_1_6276820784.png"
     },
 
     // Información de contacto
     contacto: {
-        email: "marketing@ideasdevops.com",
-        telefono: "+54 9 261 315-1000",
-        direccion: "Buenos Aires, Argentina",
-        horario: "Lunes a Viernes, 9:00 - 18:00"
+        email: "manuelj@delcampobroker.com",
+        telefono: "",
+        direccion: "Mendoza, Argentina",
+        horario: "Atención 24/7",
+        whatsapp: "",
+        broker: "Manuel del Campo - Broker Especializado"
     },
 
     // Redes sociales
@@ -24,22 +26,24 @@ const CONFIG = {
         facebook: "#",
         instagram: "#",
         linkedin: "#",
-        twitter: "#",
-        youtube: "#"
+        twitter: "#"
     },
 
     // Colores del tema
     colores: {
-        primario: "#ff6b35",
-        secundario: "#ff8c42",
+        primario: "#0066cc",
+        primario_oscuro: "#0052a3",
+        primario_claro: "#3385d6",
+        secundario: "#00a86b",
+        acento: "#ff6b35",
         exito: "#10b981",
         error: "#ef4444",
         advertencia: "#f59e0b",
         info: "#3b82f6",
-        fondo_oscuro: "#1a1a1a",
-        fondo_claro: "#ffffff",
-        texto_oscuro: "#1a1a1a",
-        texto_claro: "#64748b"
+        fondo_oscuro: "#1a1a2e",
+        fondo_claro: "#f8fafc",
+        texto_oscuro: "#1a1a2e",
+        texto_claro: "#6b7280"
     },
 
     // Configuración de animaciones
@@ -49,12 +53,29 @@ const CONFIG = {
         habilitadas: true
     },
 
-    // Configuración del formulario
+    // Configuración del formulario de cotización
     formulario: {
-        campos_requeridos: ['nombre', 'email', 'telefono', 'experiencia'],
+        campos_requeridos: ['nombre', 'email', 'telefono', 'fecha-inicio', 'fecha-fin', 'viajeros', 'plan'],
         validacion_email: true,
-        mensaje_exito: "¡Inscripción exitosa! Te contactaremos pronto.",
+        validacion_fechas: true,
+        mensaje_exito: "¡Cotización enviada exitosamente! Te contactaremos pronto.",
         mensaje_error: "Por favor completa todos los campos requeridos."
+    },
+
+    // Configuración de planes
+    planes: {
+        basico: {
+            nombre: "Básico - Cobertura Médica",
+            descripcion: "Protección médica esencial"
+        },
+        completo: {
+            nombre: "Completo - Protección Total",
+            descripcion: "Cobertura médica + equipaje + cancelación"
+        },
+        premium: {
+            nombre: "Premium - Máxima Cobertura",
+            descripcion: "Todas las coberturas + beneficios exclusivos"
+        }
     },
 
     // Configuración de analytics
@@ -95,20 +116,20 @@ const CONFIG = {
 
     // Configuración de SEO
     seo: {
-        titulo: "Seguro de Riesgos Cibernéticos - Del Campo Seguros",
-        descripcion: "Aprende a crear sitios web, bots y automatizaciones sin programar usando IA. Deploy en VPS con Docker y Ubuntu.",
-        palabras_clave: "curso desarrollo no-code, IA, sitios web, bots, automatizaciones, docker, ubuntu, cursor",
-        imagen_og: "https://ejemplo.com/imagen-og.jpg",
-        url_canonica: "https://ejemplo.com"
+        titulo: "Seguro Viajero Argentina - Del Campo Seguros | Protección Total para tu Aventura",
+        descripcion: "Seguro de viaje especializado para conocer Argentina. Del Campo Seguros te ofrece cobertura médica, equipaje, cancelación y asistencia 24/7. Viaja tranquilo, viaja protegido.",
+        palabras_clave: "seguro viaje argentina, del campo seguros, seguro viajero, cobertura médica internacional, seguro turismo argentina, asistencia viajero, manuel del campo",
+        imagen_og: "",
+        url_canonica: ""
     },
 
     // Configuración de contenido
     contenido: {
         mostrar_testimonios: true,
-        mostrar_casos_exito: true,
-        mostrar_herramientas: true,
+        mostrar_coberturas: true,
         mostrar_beneficios: true,
-        mostrar_precio: true
+        mostrar_faq: true,
+        mostrar_cotizacion: true
     },
 
     // Configuración de integración
@@ -155,33 +176,40 @@ function aplicarConfiguracion() {
     // Aplicar colores
     if (CONFIG.colores) {
         const root = document.documentElement;
-        root.style.setProperty('--color-primario', CONFIG.colores.primario);
-        root.style.setProperty('--color-secundario', CONFIG.colores.secundario);
-        root.style.setProperty('--color-exito', CONFIG.colores.exito);
-        root.style.setProperty('--color-error', CONFIG.colores.error);
+        root.style.setProperty('--primary-color', CONFIG.colores.primario);
+        root.style.setProperty('--primary-dark', CONFIG.colores.primario_oscuro);
+        root.style.setProperty('--primary-light', CONFIG.colores.primario_claro);
+        root.style.setProperty('--secondary-color', CONFIG.colores.secundario);
+        root.style.setProperty('--accent-color', CONFIG.colores.acento);
+        root.style.setProperty('--success-color', CONFIG.colores.exito);
+        root.style.setProperty('--error-color', CONFIG.colores.error);
     }
 
-    // Aplicar información del curso
-    if (CONFIG.curso) {
-        const titulo = document.querySelector('.hero h1');
+    // Aplicar información del seguro
+    if (CONFIG.seguro) {
+        const titulo = document.querySelector('.hero-title');
         const subtitulo = document.querySelector('.hero-subtitle');
-        const precio = document.querySelector('.amount');
         
-        if (titulo && CONFIG.curso.titulo) titulo.textContent = CONFIG.curso.titulo;
-        if (subtitulo && CONFIG.curso.subtitulo) subtitulo.textContent = CONFIG.curso.subtitulo;
-        if (precio && CONFIG.curso.precio) precio.textContent = CONFIG.curso.precio;
+        if (titulo && CONFIG.seguro.titulo) {
+            const titleLine = titulo.querySelector('.title-line');
+            if (titleLine) {
+                titleLine.textContent = CONFIG.seguro.titulo.split(' ').slice(0, -1).join(' ') + ' ';
+            }
+        }
+        if (subtitulo && CONFIG.seguro.subtitulo) {
+            subtitulo.textContent = CONFIG.seguro.subtitulo;
+        }
     }
 
     // Aplicar información de contacto
     if (CONFIG.contacto) {
-        const email = document.querySelector('.footer-section p:first-of-type');
-        const telefono = document.querySelector('.footer-section p:nth-of-type(2)');
-        
-        if (email && CONFIG.contacto.email) {
-            email.innerHTML = `<i class="fas fa-envelope"></i> ${CONFIG.contacto.email}`;
-        }
-        if (telefono && CONFIG.contacto.telefono) {
-            telefono.innerHTML = `<i class="fas fa-phone"></i> ${CONFIG.contacto.telefono}`;
+        const emailElements = document.querySelectorAll('.footer-section li');
+        if (emailElements.length > 0 && CONFIG.contacto.email) {
+            emailElements.forEach(el => {
+                if (el.textContent.includes('@')) {
+                    el.innerHTML = `<i class="fas fa-envelope"></i> ${CONFIG.contacto.email}`;
+                }
+            });
         }
     }
 
@@ -195,9 +223,10 @@ function aplicarConfiguracion() {
 function validarConfiguracion() {
     const errores = [];
 
-    if (!CONFIG.curso.titulo) errores.push('Título del curso es requerido');
-    if (!CONFIG.curso.precio || CONFIG.curso.precio <= 0) errores.push('Precio del curso debe ser mayor a 0');
+    if (!CONFIG.seguro.nombre) errores.push('Nombre del seguro es requerido');
+    if (!CONFIG.seguro.titulo) errores.push('Título del seguro es requerido');
     if (!CONFIG.contacto.email) errores.push('Email de contacto es requerido');
+    if (!CONFIG.contacto.telefono) errores.push('Teléfono de contacto es requerido');
 
     if (errores.length > 0) {
         console.warn('Errores en la configuración:', errores);
