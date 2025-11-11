@@ -1,63 +1,63 @@
-# ===============================================
-# DOCKERIGNORE PARA LANDING PAGE MARKETING IA
-# ===============================================
+# Git
+.git
+.gitignore
+.gitattributes
 
-# Archivos de desarrollo
-*.log
-*.tmp
-*.temp
+# Node
+node_modules
+npm-debug.log
+package-lock.json
+
+# Python
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+.Python
+venv/
+env/
+ENV/
+
+# IDE
+.vscode
+.idea
+*.swp
+*.swo
+*~
+
+# OS
 .DS_Store
 Thumbs.db
 
-# Directorios de desarrollo
-.git/
-.gitignore
-.vscode/
-.idea/
-node_modules/
-npm-debug.log*
+# Logs
+*.log
+logs/
+data/logs/
 
-# Archivos de configuración local
+# Documentation
+*.md
+!README.md
+
+# Development files
 .env
 .env.local
-.env.development.local
-.env.test.local
-.env.production.local
-
-# Archivos de backup
-*.bak
-*.backup
-*.old
-
-# Archivos de sistema
-.DS_Store
-Thumbs.db
-desktop.ini
-
-# Archivos de documentación de desarrollo
-README.md
-INICIO_RAPIDO.md
-SERVIDOR.md
-*.md
-
-# Archivos de configuración de desarrollo
-package.json
-package-lock.json
-yarn.lock
-
-# Scripts de desarrollo
+config.env
 start-server.js
-start-server.sh
 server.py
 
-# Archivos de configuración de desarrollo
-config.js
-config.env.example
-
-# Directorios de deploy
+# Old project files
+frontend/
+assets/
 deploy-templates/
-scripts/
+ejemplos.html
 
-# Archivos de configuración del sistema de deploy
-config.json
-env.example
+# Build artifacts
+dist/
+build/
+*.zip
+*.tar.gz
+
+# Temporary files
+tmp/
+temp/
+*.tmp

@@ -1,0 +1,172 @@
+# ===============================================
+# DOCKERFILE PARA SEGURO VIAJERO ARGENTINA
+# ===============================================
+# Sistema de Deploy Automático - IdeasDevOps
+# Landing page con backend para envío de correos
+# ===============================================
+
+FROM nginx:alpine
+
+# ===============================================
+# CONFIGURACIÓN DE LA APLICACIÓN
+# ===============================================
+ARG APP_NAME="seguro-viajero-landing"
+ARG APP_VERSION="1.0.0"
+ARG APP_DESCRIPTION="Landing page para Seguro Viajero Argentina - Del Campo Seguros"
+
+# ===============================================
+# INSTALACIÓN DE DEPENDENCIAS
+# ===============================================
+RUN apk add --no-cache \
+    python3 \
+    py3-pip \
+    curl \
+    bash \
+    dumb-init \
+    supervisor \
+    && rm -rf /var/cache/apk/*
+
+# Instalar dependencias de Python
+COPY backend/requirements.txt /tmp/requirements.txt
+RUN pip3 install --no-cache-dir --break-system-packages -r /tmp/requirements.txt
+
+# ===============================================
+# CREACIÓN DE DIRECTORIOS NECESARIOS
+# ===============================================
+RUN mkdir -p \
+    /data/logs/nginx \
+    /data/logs/backend \
+    /var/cache/nginx \
+    /var/run \
+    /tmp/nginx \
+    /etc/supervisor/conf.d
+
+# ===============================================
+# CONFIGURACIÓN DE NGINX OPTIMIZADA
+# ===============================================
+RUN echo 'server {' > /etc/nginx/conf.d/default.conf && \
+    echo '    listen 80 default_server;' >> /etc/nginx/conf.d/default.conf && \
+    echo '    listen [::]:80 default_server;' >> /etc/nginx/conf.d/default.conf && \
+    echo '    ' >> /etc/nginx/conf.d/default.conf && \
+    echo '    root /usr/share/nginx/html;' >> /etc/nginx/conf.d/default.conf && \
+    echo '    index index.html index.htm;' >> /etc/nginx/conf.d/default.conf && \
+    echo '    ' >> /etc/nginx/conf.d/default.conf && \
+    echo '    server_name _;' >> /etc/nginx/conf.d/default.conf && \
+    echo '    ' >> /etc/nginx/conf.d/default.conf && \
+    echo '    # Configuración de logs' >> /etc/nginx/conf.d/default.conf && \
+    echo '    access_log /data/logs/nginx/access.log;' >> /etc/nginx/conf.d/default.conf && \
+    echo '    error_log /data/logs/nginx/error.log;' >> /etc/nginx/conf.d/default.conf && \
+    echo '    ' >> /etc/nginx/conf.d/default.conf && \
+    echo '    # Proxy para API backend' >> /etc/nginx/conf.d/default.conf && \
+    echo '    location /api/ {' >> /etc/nginx/conf.d/default.conf && \
+    echo '        proxy_pass http://127.0.0.1:5000;' >> /etc/nginx/conf.d/default.conf && \
+    echo '        proxy_set_header Host $host;' >> /etc/nginx/conf.d/default.conf && \
+    echo '        proxy_set_header X-Real-IP $remote_addr;' >> /etc/nginx/conf.d/default.conf && \
+    echo '        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;' >> /etc/nginx/conf.d/default.conf && \
+    echo '        proxy_set_header X-Forwarded-Proto $scheme;' >> /etc/nginx/conf.d/default.conf && \
+    echo '        proxy_connect_timeout 30s;' >> /etc/nginx/conf.d/default.conf && \
+    echo '        proxy_send_timeout 30s;' >> /etc/nginx/conf.d/default.conf && \
+    echo '        proxy_read_timeout 30s;' >> /etc/nginx/conf.d/default.conf && \
+    echo '    }' >> /etc/nginx/conf.d/default.conf && \
+    echo '    ' >> /etc/nginx/conf.d/default.conf && \
+    echo '    # Configuración de archivos estáticos' >> /etc/nginx/conf.d/default.conf && \
+    echo '    location / {' >> /etc/nginx/conf.d/default.conf && \
+    echo '        try_files $uri $uri/ /index.html;' >> /etc/nginx/conf.d/default.conf && \
+    echo '    }' >> /etc/nginx/conf.d/default.conf && \
+    echo '    ' >> /etc/nginx/conf.d/default.conf && \
+    echo '    # Configuración de caché para assets' >> /etc/nginx/conf.d/default.conf && \
+    echo '    location ~* \.(css|js|png|jpg|jpeg|gif|ico|svg|woff|woff2|ttf|eot)$ {' >> /etc/nginx/conf.d/default.conf && \
+    echo '        expires 1y;' >> /etc/nginx/conf.d/default.conf && \
+    echo '        add_header Cache-Control "public, immutable";' >> /etc/nginx/conf.d/default.conf && \
+    echo '    }' >> /etc/nginx/conf.d/default.conf && \
+    echo '    ' >> /etc/nginx/conf.d/default.conf && \
+    echo '    # Health check endpoint' >> /etc/nginx/conf.d/default.conf && \
+    echo '    location /health {' >> /etc/nginx/conf.d/default.conf && \
+    echo '        access_log off;' >> /etc/nginx/conf.d/default.conf && \
+    echo '        return 200 "healthy\n";' >> /etc/nginx/conf.d/default.conf && \
+    echo '        add_header Content-Type text/plain;' >> /etc/nginx/conf.d/default.conf && \
+    echo '    }' >> /etc/nginx/conf.d/default.conf && \
+    echo '    ' >> /etc/nginx/conf.d/default.conf && \
+    echo '    # Configuración de seguridad' >> /etc/nginx/conf.d/default.conf && \
+    echo '    add_header X-Frame-Options "SAMEORIGIN" always;' >> /etc/nginx/conf.d/default.conf && \
+    echo '    add_header X-Content-Type-Options "nosniff" always;' >> /etc/nginx/conf.d/default.conf && \
+    echo '    add_header X-XSS-Protection "1; mode=block" always;' >> /etc/nginx/conf.d/default.conf && \
+    echo '}' >> /etc/nginx/conf.d/default.conf
+
+# ===============================================
+# COPIA DE ARCHIVOS DE LA LANDING PAGE
+# ===============================================
+# Copiar archivos frontend desde la raíz
+COPY index.html /usr/share/nginx/html/
+COPY styles.css /usr/share/nginx/html/
+COPY script.js /usr/share/nginx/html/
+COPY translations.js /usr/share/nginx/html/
+COPY config.js /usr/share/nginx/html/
+
+# Copiar backend
+COPY backend/ /app/backend/
+
+# ===============================================
+# SCRIPT DE INICIO OPTIMIZADO
+# ===============================================
+RUN echo '#!/bin/sh' > /start.sh && \
+    echo '' >> /start.sh && \
+    echo 'echo "🚀 Iniciando '${APP_NAME}'"' >> /start.sh && \
+    echo 'echo "========================================="' >> /start.sh && \
+    echo 'echo "Versión: '${APP_VERSION}'"' >> /start.sh && \
+    echo 'echo "Descripción: '${APP_DESCRIPTION}'"' >> /start.sh && \
+    echo 'echo "🌐 Servidor: nginx + Flask backend"' >> /start.sh && \
+    echo 'echo "📁 Frontend: /usr/share/nginx/html"' >> /start.sh && \
+    echo 'echo "🐍 Backend: /app/backend"' >> /start.sh && \
+    echo '' >> /start.sh && \
+    echo '# Crear directorios necesarios' >> /start.sh && \
+    echo 'mkdir -p /data/logs/nginx /data/logs/backend /var/log/nginx /var/cache/nginx /var/run /tmp/nginx' >> /start.sh && \
+    echo '' >> /start.sh && \
+    echo '# Verificar configuración de nginx' >> /start.sh && \
+    echo 'nginx -t' >> /start.sh && \
+    echo '' >> /start.sh && \
+    echo '# Iniciar nginx en background' >> /start.sh && \
+    echo 'echo "🌐 Iniciando nginx..."' >> /start.sh && \
+    echo 'nginx -g "daemon on;"' >> /start.sh && \
+    echo '' >> /start.sh && \
+    echo '# Esperar un momento para que nginx se inicie' >> /start.sh && \
+    echo 'sleep 2' >> /start.sh && \
+    echo '' >> /start.sh && \
+    echo '# Iniciar backend Flask' >> /start.sh && \
+    echo 'echo "🐍 Iniciando backend Flask..."' >> /start.sh && \
+    echo 'cd /app/backend' >> /start.sh && \
+    echo 'PORT=5000 python3 app.py &' >> /start.sh && \
+    echo '' >> /start.sh && \
+    echo '# Mantener el contenedor corriendo' >> /start.sh && \
+    echo 'echo "✅ Servicios iniciados correctamente"' >> /start.sh && \
+    echo 'echo "🌐 Nginx: Puerto 80"' >> /start.sh && \
+    echo 'echo "🐍 Backend: Puerto 5000"' >> /start.sh && \
+    echo 'echo "========================================="' >> /start.sh && \
+    echo '' >> /start.sh && \
+    echo '# Mantener el proceso principal vivo' >> /start.sh && \
+    echo 'wait' >> /start.sh
+
+RUN chmod +x /start.sh
+
+# ===============================================
+# CONFIGURACIÓN DE PUERTOS Y HEALTHCHECK
+# ===============================================
+EXPOSE 80
+
+# Healthcheck optimizado para EasyPanel
+HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
+    CMD curl -f http://localhost/health || exit 1
+
+# ===============================================
+# CONFIGURACIÓN DE PERMISOS
+# ===============================================
+RUN chown -R nginx:nginx /usr/share/nginx/html && \
+    chmod -R 755 /usr/share/nginx/html && \
+    chmod +x /start.sh
+
+# ===============================================
+# PUNTO DE ENTRADA
+# ===============================================
+ENTRYPOINT ["dumb-init", "--"]
+CMD ["/start.sh"]
+
