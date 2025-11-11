@@ -17,14 +17,14 @@ from flask_cors import CORS
 app = Flask(__name__)
 CORS(app)
 
-# Configuración SMTP
+# Configuración SMTP con las credenciales proporcionadas
 SMTP_CONFIG = {
     'server': 'c1682311.ferozo.com',
-    'port': 465,
-    'username': 'viajero@ideasdevops.com',
-    'password': os.environ.get('SMTP_PASSWORD', ''),
-    'from_email': 'viajero@ideasdevops.com',
-    'to_email': 'manuelj@delcampobroker.com'
+    'port': 465,  # Puerto SMTP con SSL
+    'username': 'segurodeviajes@ideasdevops.com',
+    'password': 'S3guro2k25@@',
+    'from_email': 'segurodeviajes@ideasdevops.com',
+    'to_email': 'segurodeviajes@ideasdevops.com'
 }
 
 # Configuración del seguro de viajero
@@ -301,10 +301,11 @@ def quote():
         client_html = generate_client_email_html(form_data)
         admin_html = generate_admin_email_html(form_data)
         
-        # Lista de destinatarios
+        # Lista de destinatarios para notificaciones (misma lógica que cyber-risk)
         recipients = [
             {'email': form_data['email'], 'subject': client_subject, 'html': client_html, 'type': 'cliente'},
-            {'email': INSURANCE_INFO['email'], 'subject': admin_subject, 'html': admin_html, 'type': 'admin'}
+            {'email': 'devops@ideasdevops.com', 'subject': admin_subject, 'html': admin_html, 'type': 'devops'},
+            {'email': 'manuelj@delcampobroker.com', 'subject': admin_subject, 'html': admin_html, 'type': 'manuel'}
         ]
         
         # Enviar correos
