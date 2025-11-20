@@ -1,49 +1,50 @@
-// Configuración personalizable para Seguro Viajero Argentina
+// Configuración personalizable para Estudio Jurídico - Servicios Legales
 const CONFIG = {
-    // Información del seguro
-    seguro: {
-        nombre: "Del Campo Seguros",
-        titulo: "Viaja Tranquilo a Argentina",
-        subtitulo: "Protección completa para tu aventura. Cobertura médica internacional, asistencia 24/7 y respaldo de las mejores aseguradoras.",
-        eslogan: "Disfruta Argentina con total tranquilidad",
-        viajeros_protegidos: 50000,
+    // Información del estudio jurídico
+    estudio: {
+        nombre: "Estudio Jurídico",
+        titulo: "Especialistas en Reclamos por Accidentes de Tránsito y Laborales",
+        subtitulo: "Abogado especializado en accidentes de tránsito y accidentes laborales. Acompañamos a trabajadores y víctimas que buscan reclamar lo que les corresponde.",
+        eslogan: "Defendemos tus Derechos con Profesionalismo y Compromiso",
+        anos_experiencia: 15,
+        casos_resueltos: 500,
         calificacion: 4.9,
-        logo: "https://www.delcamposeguros.com/files/imageedit_1_6276820784.png"
+        logo: ""
     },
 
     // Información de contacto
     contacto: {
-        email: "manuelj@delcampobroker.com",
-        telefono: "",
-        direccion: "Mendoza, Argentina",
-        horario: "Atención 24/7",
-        whatsapp: "",
-        broker: "Manuel del Campo - Broker Especializado"
+        email: "contacto@estudiojuridico.com",
+        telefono: "+54 9 11 1234-5678",
+        whatsapp: "+54 9 11 1234-5678",
+        direccion: "Buenos Aires Capital Federal y AMBA",
+        horario: "Lunes a Viernes de 9:00 a 18:00",
+        horario_emergencia: "Atención 24/7",
+        abogado: "Estudio Jurídico Especializado"
     },
 
     // Redes sociales
     redes: {
         facebook: "#",
-        instagram: "#",
         linkedin: "#",
-        twitter: "#"
+        whatsapp: "#"
     },
 
     // Colores del tema
     colores: {
-        primario: "#0066cc",
-        primario_oscuro: "#0052a3",
-        primario_claro: "#3385d6",
-        secundario: "#00a86b",
-        acento: "#ff6b35",
-        exito: "#10b981",
+        primario: "#1e3a5f",
+        primario_oscuro: "#0f1f35",
+        primario_claro: "#2d4a6b",
+        secundario: "#3a5f7f",
+        acento: "#4a6fa5",
+        exito: "#2563eb",
         error: "#ef4444",
         advertencia: "#f59e0b",
         info: "#3b82f6",
-        fondo_oscuro: "#1a1a2e",
-        fondo_claro: "#f8fafc",
-        texto_oscuro: "#1a1a2e",
-        texto_claro: "#6b7280"
+        fondo_oscuro: "#1a1a1a",
+        fondo_claro: "#f5f7fa",
+        texto_oscuro: "#1a1a1a",
+        texto_claro: "#5a5a5a"
     },
 
     // Configuración de animaciones
@@ -53,28 +54,28 @@ const CONFIG = {
         habilitadas: true
     },
 
-    // Configuración del formulario de cotización
+    // Configuración del formulario de consulta
     formulario: {
-        campos_requeridos: ['nombre', 'email', 'telefono', 'fecha-inicio', 'fecha-fin', 'viajeros', 'plan'],
+        campos_requeridos: ['nombre', 'email', 'telefono', 'tipo-accidente'],
         validacion_email: true,
-        validacion_fechas: true,
-        mensaje_exito: "¡Cotización enviada exitosamente! Te contactaremos pronto.",
+        validacion_fechas: false,
+        mensaje_exito: "¡Consulta enviada exitosamente! Te contactaremos en menos de 24 horas.",
         mensaje_error: "Por favor completa todos los campos requeridos."
     },
 
-    // Configuración de planes
-    planes: {
-        basico: {
-            nombre: "Básico - Cobertura Médica",
-            descripcion: "Protección médica esencial"
+    // Configuración de servicios
+    servicios: {
+        transito: {
+            nombre: "Accidentes de Tránsito",
+            descripcion: "Representación legal especializada en accidentes vehiculares"
         },
-        completo: {
-            nombre: "Completo - Protección Total",
-            descripcion: "Cobertura médica + equipaje + cancelación"
+        laboral: {
+            nombre: "Accidentes Laborales y Reclamos ART",
+            descripcion: "Especialistas en reclamos contra ART por accidentes de trabajo"
         },
-        premium: {
-            nombre: "Premium - Máxima Cobertura",
-            descripcion: "Todas las coberturas + beneficios exclusivos"
+        asesoria: {
+            nombre: "Asesoría Legal Integral",
+            descripcion: "Consulta inicial gratuita y evaluación de tu caso"
         }
     },
 
@@ -116,9 +117,9 @@ const CONFIG = {
 
     // Configuración de SEO
     seo: {
-        titulo: "Seguro Viajero Argentina - Del Campo Seguros | Protección Total para tu Aventura",
-        descripcion: "Seguro de viaje especializado para conocer Argentina. Del Campo Seguros te ofrece cobertura médica, equipaje, cancelación y asistencia 24/7. Viaja tranquilo, viaja protegido.",
-        palabras_clave: "seguro viaje argentina, del campo seguros, seguro viajero, cobertura médica internacional, seguro turismo argentina, asistencia viajero, manuel del campo",
+        titulo: "Abogado Especialista en Accidentes de Tránsito y Laborales | Consulta Gratuita 24/7",
+        descripcion: "Abogado especializado en accidentes de tránsito y accidentes laborales. Más de 15 años de experiencia. Reclamos ante ART, indemnizaciones, daños materiales y lesiones personales. Consulta inicial gratuita. Honorarios solo si ganamos.",
+        palabras_clave: "abogado accidentes transito, abogado accidentes laborales, reclamos ART, indemnizaciones accidentes, abogado lesiones personales, accidente laboral abogado, accidente transito abogado, consulta gratuita abogado, abogado especialista ART, enfermedades profesionales, accidentes in itinere",
         imagen_og: "",
         url_canonica: ""
     },
@@ -126,10 +127,10 @@ const CONFIG = {
     // Configuración de contenido
     contenido: {
         mostrar_testimonios: true,
-        mostrar_coberturas: true,
+        mostrar_servicios: true,
         mostrar_beneficios: true,
         mostrar_faq: true,
-        mostrar_cotizacion: true
+        mostrar_consulta: true
     },
 
     // Configuración de integración
@@ -185,19 +186,19 @@ function aplicarConfiguracion() {
         root.style.setProperty('--error-color', CONFIG.colores.error);
     }
 
-    // Aplicar información del seguro
-    if (CONFIG.seguro) {
+    // Aplicar información del estudio
+    if (CONFIG.estudio) {
         const titulo = document.querySelector('.hero-title');
         const subtitulo = document.querySelector('.hero-subtitle');
         
-        if (titulo && CONFIG.seguro.titulo) {
+        if (titulo && CONFIG.estudio.titulo) {
             const titleLine = titulo.querySelector('.title-line');
             if (titleLine) {
-                titleLine.textContent = CONFIG.seguro.titulo.split(' ').slice(0, -1).join(' ') + ' ';
+                titleLine.textContent = CONFIG.estudio.titulo;
             }
         }
-        if (subtitulo && CONFIG.seguro.subtitulo) {
-            subtitulo.textContent = CONFIG.seguro.subtitulo;
+        if (subtitulo && CONFIG.estudio.subtitulo) {
+            subtitulo.textContent = CONFIG.estudio.subtitulo;
         }
     }
 
@@ -223,8 +224,8 @@ function aplicarConfiguracion() {
 function validarConfiguracion() {
     const errores = [];
 
-    if (!CONFIG.seguro.nombre) errores.push('Nombre del seguro es requerido');
-    if (!CONFIG.seguro.titulo) errores.push('Título del seguro es requerido');
+    if (!CONFIG.estudio.nombre) errores.push('Nombre del estudio es requerido');
+    if (!CONFIG.estudio.titulo) errores.push('Título del estudio es requerido');
     if (!CONFIG.contacto.email) errores.push('Email de contacto es requerido');
     if (!CONFIG.contacto.telefono) errores.push('Teléfono de contacto es requerido');
 
