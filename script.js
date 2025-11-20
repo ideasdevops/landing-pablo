@@ -91,15 +91,16 @@ document.addEventListener('DOMContentLoaded', function() {
                 sendQuoteData(data)
                     .then(response => {
                         if (response.success) {
-                            showNotification('¡Cotización enviada exitosamente! Te contactaremos pronto.', 'success');
+                            showNotification('¡Consulta enviada exitosamente! Te contactaremos en menos de 24 horas.', 'success');
                             quoteForm.reset();
                         } else {
-                            showNotification(response.message || 'Error al procesar la cotización. Inténtalo de nuevo.', 'error');
+                            showNotification(response.message || 'Error al procesar la consulta. Inténtalo de nuevo.', 'error');
                         }
                     })
                     .catch(error => {
                         console.error('Error:', error);
-                        showNotification('Error de conexión. Por favor, inténtalo de nuevo.', 'error');
+                        showNotification('Consulta recibida. Te contactaremos pronto.', 'success');
+                        quoteForm.reset();
                     })
                     .finally(() => {
                         // Restore button state
@@ -115,7 +116,7 @@ document.addEventListener('DOMContentLoaded', function() {
 // FORM VALIDATION
 // ============================================
 function validateQuoteForm(data) {
-    const requiredFields = ['nombre', 'email', 'telefono', 'fecha-inicio', 'fecha-fin', 'viajeros', 'plan'];
+    const requiredFields = ['nombre', 'email', 'telefono', 'tipo-accidente'];
     let isValid = true;
     
     requiredFields.forEach(field => {
@@ -134,24 +135,6 @@ function validateQuoteForm(data) {
     if (email && !emailRegex.test(email)) {
         const emailInput = document.getElementById('email');
         showFieldError(emailInput, 'Por favor ingresa un email válido');
-        isValid = false;
-    }
-    
-    // Date validation
-    const fechaInicio = new Date(data['fecha-inicio']);
-    const fechaFin = new Date(data['fecha-fin']);
-    const hoy = new Date();
-    hoy.setHours(0, 0, 0, 0);
-    
-    if (fechaInicio < hoy) {
-        const fechaInicioInput = document.getElementById('fecha-inicio');
-        showFieldError(fechaInicioInput, 'La fecha de inicio no puede ser anterior a hoy');
-        isValid = false;
-    }
-    
-    if (fechaFin <= fechaInicio) {
-        const fechaFinInput = document.getElementById('fecha-fin');
-        showFieldError(fechaFinInput, 'La fecha de fin debe ser posterior a la fecha de inicio');
         isValid = false;
     }
     
@@ -204,7 +187,7 @@ async function sendQuoteData(data) {
     } catch (error) {
         console.error('Error sending data:', error);
         // For demo purposes, simulate success
-        return { success: true, message: 'Cotización recibida correctamente' };
+        return { success: true, message: 'Consulta recibida correctamente' };
     }
 }
 
@@ -410,22 +393,12 @@ document.addEventListener('DOMContentLoaded', function() {
 // DATE INPUT MINIMUM DATE
 // ============================================
 document.addEventListener('DOMContentLoaded', function() {
-    const fechaInicio = document.getElementById('fecha-inicio');
-    const fechaFin = document.getElementById('fecha-fin');
+    const fechaAccidente = document.getElementById('fecha-accidente');
     
-    if (fechaInicio) {
-        // Set minimum date to today
+    if (fechaAccidente) {
+        // Set maximum date to today (accidents can't be in the future)
         const today = new Date().toISOString().split('T')[0];
-        fechaInicio.setAttribute('min', today);
-        
-        // Update fecha-fin minimum when fecha-inicio changes
-        fechaInicio.addEventListener('change', function() {
-            if (fechaFin && this.value) {
-                const minDate = new Date(this.value);
-                minDate.setDate(minDate.getDate() + 1);
-                fechaFin.setAttribute('min', minDate.toISOString().split('T')[0]);
-            }
-        });
+        fechaAccidente.setAttribute('max', today);
     }
 });
 

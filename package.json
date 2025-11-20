@@ -1,7 +1,7 @@
 {
-  "name": "seguro-viajero-argentina",
+  "name": "landing-pablo-servicios-legales",
   "version": "1.0.0",
-  "description": "Landing page para Seguro Viajero Argentina - Del Campo Seguros",
+  "description": "Landing page para servicios legales especializados en accidentes de tránsito y laborales",
   "main": "index.html",
   "scripts": {
     "start": "node start-server.js",
@@ -10,14 +10,14 @@
     "test": "echo 'No tests specified'"
   },
   "keywords": [
-    "seguro",
-    "viajero",
-    "argentina",
-    "travel-insurance",
-    "del-campo-seguros",
-    "landing-page"
+    "abogado",
+    "accidentes-transito",
+    "accidentes-laborales",
+    "servicios-legales",
+    "landing-page",
+    "legal-services"
   ],
-  "author": "Del Campo Seguros",
+  "author": "Estudio Jurídico",
   "license": "MIT",
   "devDependencies": {},
   "dependencies": {},

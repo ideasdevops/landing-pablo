@@ -1,53 +1,57 @@
-# Seguro Viajero Argentina - Del Campo Seguros
+# Landing Page - Servicios Legales Especializados
 
 ## Descripción
-Landing page profesional para la comercialización de seguros de viaje a Argentina. La página está diseñada para transmitir confianza, tranquilidad y conocimiento, ofreciendo protección completa para viajeros que desean conocer Argentina.
+Landing page profesional para servicios legales especializados en accidentes de tránsito y accidentes laborales. La página está diseñada para transmitir profesionalismo, confianza, seguridad y contención, ofreciendo asesoría legal integral y representación especializada.
 
 ## Características Principales
 
 ### 🎨 Diseño y Branding
-- **Paleta de colores profesional:**
-  - Azul primario (#0066cc) - Confianza y seguridad
-  - Verde secundario (#00a86b) - Tranquilidad
-  - Naranja acento (#ff6b35) - Acción y energía
-  - Blanco (#FFFFFF) - Limpieza y claridad
-  - Gris claro (#f8fafc) - Fondos secundarios
+- **Paleta de colores sobria y profesional:**
+  - Azul oscuro primario (#1e3a5f) - Profesionalismo y confianza
+  - Azul medio (#2d4a6b) - Estabilidad
+  - Grises profesionales - Neutralidad y seriedad
+  - Blanco (#FFFFFF) - Claridad y limpieza
+  - Gris claro (#f5f7fa) - Fondos secundarios
 
-- **Logotipo corporativo:** Del Campo Seguros
+- **Tipografía profesional:**
+  - Inter (sans-serif) - Moderna y legible
+  - Crimson Text (serif) - Elegante y seria
 - **Diseño responsivo:** Optimizado para dispositivos móviles y desktop
-- **Sistema de traducciones:** Español, Inglés y Portugués
+- **Estilo sobrio:** Transmite seguridad, confianza y contención
 
 ### 📋 Contenido Especializado
-- **Información detallada sobre seguros de viaje a Argentina**
-- **Coberturas específicas:** Médica internacional, equipaje, cancelación, asistencia 24/7
-- **Beneficios exclusivos:** Activación inmediata, app móvil, póliza digital
-- **Testimonios reales:** Experiencias de viajeros protegidos
+- **Servicios legales especializados:**
+  - Accidentes de tránsito
+  - Accidentes laborales
+  - Asesoría legal integral
+- **Información detallada sobre cada área de especialización**
+- **Testimonios de clientes reales**
+- **Proceso de consulta gratuita**
 
 ### 🛡️ Secciones Principales
-1. **Hero Section:** Presentación impactante con mensaje de confianza
-2. **Por qué elegirnos:** Ventajas y beneficios del seguro
-3. **Coberturas:** Planes detallados (Médica, Completo, Asistencia)
-4. **Beneficios:** Características exclusivas del servicio
-5. **Testimonios:** Historias de viajeros satisfechos
-6. **Formulario de Cotización:** Captura de leads especializada
-7. **FAQ:** Preguntas frecuentes sobre el seguro
+1. **Hero Section:** Presentación impactante con mensaje de confianza y profesionalismo
+2. **Por qué elegirnos:** Ventajas y beneficios del servicio legal
+3. **Servicios:** Áreas de especialización detalladas
+4. **Experiencia:** Trayectoria y resultados comprobados
+5. **Testimonios:** Historias de clientes satisfechos
+6. **Formulario de Consulta:** Captura de leads especializada
+7. **FAQ:** Preguntas frecuentes sobre servicios legales
 
 ### 📱 Funcionalidades
-- **Sistema de traducciones:** Español, Inglés y Portugués
-- **Formulario de cotización personalizado** con validación
+- **Formulario de consulta personalizado** con validación
 - **Navegación suave** entre secciones
 - **Animaciones profesionales** para mejorar la experiencia
 - **Diseño responsive** para todos los dispositivos
-- **Selector de idioma** en el header
+- **Sistema de notificaciones** para feedback al usuario
 
 ## Estructura de Archivos
 
 ```
-seguro-viajero/
+landing-pablo/
 ├── index.html          # Página principal
 ├── styles.css          # Estilos del sitio
 ├── script.js           # Funcionalidades JavaScript
-├── translations.js     # Sistema de traducciones
+├── translations.js     # Sistema de traducciones (opcional)
 ├── config.js           # Configuración
 ├── start-server.js     # Servidor Node.js para desarrollo
 ├── backend/
@@ -59,29 +63,27 @@ seguro-viajero/
 
 ## Tecnologías Utilizadas
 - **HTML5** - Estructura semántica
-- **CSS3** - Estilos modernos con gradientes y animaciones
+- **CSS3** - Estilos modernos con diseño sobrio y profesional
 - **JavaScript ES6+** - Interactividad y validaciones
 - **Font Awesome** - Iconografía profesional
-- **Google Fonts** - Poppins y Playfair Display
+- **Google Fonts** - Inter y Crimson Text
 - **Node.js** - Servidor de desarrollo
 - **Python Flask** - Backend para envío de correos
 
 ## Información de Contacto
-- **Empresa:** Del Campo Seguros
-- **Email:** manuelj@delcampobroker.com
-- **Broker:** Manuel del Campo - Broker Especializado
-- **Dirección:** Mendoza, Argentina
-- **Horarios:** Atención 24/7
+- **Servicio:** Estudio Jurídico
+- **Especialización:** Accidentes de Tránsito y Laborales
+- **Atención:** 24/7
+- **Consulta inicial:** Gratuita
 
-## Características del Seguro
-- ✅ Cobertura médica internacional completa
-- ✅ Asistencia 24/7 en español
-- ✅ Protección de equipaje
-- ✅ Cancelación de viaje
-- ✅ Repatriación médica
-- ✅ Activación inmediata
-- ✅ App móvil incluida
-- ✅ Póliza digital instantánea
+## Características del Servicio
+- ✅ Consulta inicial gratuita
+- ✅ Atención personalizada 24/7
+- ✅ Honorarios solo si ganamos
+- ✅ Experiencia comprobada (15+ años)
+- ✅ Equipo multidisciplinario
+- ✅ Alto índice de éxito
+- ✅ Enfoque humano y empático
 
 ## Instalación y Uso
 
@@ -89,7 +91,7 @@ seguro-viajero/
 
 1. **Iniciar servidor frontend:**
 ```bash
-cd seguro-viajero
+cd landing-pablo
 npm start
 # o
 node start-server.js
@@ -110,10 +112,10 @@ python3 app.py
 
 ## Notas de Desarrollo
 - El diseño está optimizado para conversión de leads
-- Formulario especializado para captura de información de viajeros
-- Sistema de traducciones completo (ES, EN, PT)
-- Branding consistente con la identidad de Del Campo Seguros
+- Formulario especializado para captura de información de clientes
+- Branding consistente con identidad profesional y sobria
 - Arquitectura limpia y mantenible
+- Enfoque en transmitir confianza, seguridad y contención
 
 ---
-*Desarrollado para Del Campo Seguros - Broker especializado en seguros de viaje*
+*Desarrollado para servicios legales especializados en accidentes de tránsito y laborales*
