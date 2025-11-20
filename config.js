@@ -117,9 +117,9 @@ const CONFIG = {
 
     // Configuración de SEO
     seo: {
-        titulo: "Abogado Especialista en Accidentes de Tránsito y Laborales | Consulta Gratuita 24/7",
-        descripcion: "Abogado especializado en accidentes de tránsito y accidentes laborales. Más de 15 años de experiencia. Reclamos ante ART, indemnizaciones, daños materiales y lesiones personales. Consulta inicial gratuita. Honorarios solo si ganamos.",
-        palabras_clave: "abogado accidentes transito, abogado accidentes laborales, reclamos ART, indemnizaciones accidentes, abogado lesiones personales, accidente laboral abogado, accidente transito abogado, consulta gratuita abogado, abogado especialista ART, enfermedades profesionales, accidentes in itinere",
+        titulo: "Abogado Especialista en Accidentes de Tránsito y Laborales Buenos Aires | Reclamos ART | Consulta Gratuita",
+        descripcion: "Abogado especialista en accidentes de tránsito y accidentes laborales en Buenos Aires. Más de 15 años de experiencia en reclamos ante ART, indemnizaciones por accidentes, daños materiales, lesiones personales y enfermedades profesionales. Consulta gratuita 24/7. Honorarios solo si ganamos tu caso. Abogado especializado en accidentes in itinere y reclamos laborales.",
+        palabras_clave: "abogado accidentes transito, abogado accidentes laborales, reclamos ART, indemnizaciones accidentes, abogado lesiones personales, accidente laboral abogado, accidente transito abogado, consulta gratuita abogado, abogado especialista ART, enfermedades profesionales, accidentes in itinere, abogado buenos aires, abogado especialista accidentes, reclamos laborales, indemnizacion accidente transito, abogado ART, abogado accidentes trabajo, abogado accidentes vehiculares, abogado daños materiales, abogado accidentes moto, abogado accidentes auto, abogado accidentes bicicleta, abogado accidentes peaton, abogado incapacidad laboral, abogado accidentes calle, abogado accidentes ruta, estudio juridico accidentes, abogado especializado accidentes, consulta abogado gratuita, abogado honorarios resultado",
         imagen_og: "",
         url_canonica: ""
     },
